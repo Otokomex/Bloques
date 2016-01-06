@@ -1,0 +1,247 @@
+<html>
+<head><title>Bloques</title> 
+<style type="text/css">
+td {cursor: pointer}
+td.purpura {background-color: purple}
+td.verde {background-color: green}
+td.plata {background-color: silver}
+td.anaranjado {background-color: orange}
+td.fuccia {background-color: #ff00ff}
+</style>
+<script language="javascript">
+<!--;
+/*El algoritmo debe identificar las celdas conectadas entre si por color
+y crear un lista con el identificador de cada una de las celdas que este en la categoria de "conectadas".
+Con esa lista, se asignara un nuevo color general a cada miembro de ella.
+*/
+i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0;
+tiros = 0;
+linea = [];
+linea1 = [];
+linea2 = [];
+linea3 = [];
+linea4 = [];
+linea5 = [];
+linea6 = [];
+linea7 = [];
+linea8 = [];
+linea9 = [];
+linea10 = [];
+
+//#31
+	function Cuales(nuevoColor) {
+		playSound();
+		color_cambiar = document.getElementsByTagName("td")[0].className;
+		if (color_cambiar == nuevoColor ) { alert("\tUsa otro color. \nEl color " +nuevoColor+ " es el que tienes que cambiar"); return 0; }
+
+		if ( tiros == 0 ) { alert("Debes iniciar un juego nuevo"); return 0; }
+		if ( tiros > 0 ) {
+		tiros = tiros - 1; }
+		ok=1;
+		document.getElementById('score').value = "Tiros restantes: " + tiros;
+		lista = [];
+		conec = [];
+		lista[0] = 0;
+		conec[0] = "ok";
+		
+		for ( i=1; i<100; i++) {
+			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
+				if ( i!=10 && i!=20 && i!=30 && i!=40 && i!=50 && i!=60 && i!=70 && i!=80 && i!=90 ) {
+					if ( conec[i-1] == "ok"|| conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i;
+						conec[i] = "ok";
+						ok++; }
+				}
+				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 || i==90 ) {
+					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i;
+						conec[i] = "ok";
+						ok++; }
+			
+			}
+		}
+				if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no";
+				}
+			
+		}
+
+		for ( n=0; n<=99; n++) {
+			if ( conec[n] == "ok" ) { document.getElementsByTagName("td")[n].className = nuevoColor;
+			}
+		}
+		//alert(conec);
+		//Comprueba();
+		if ( ok > 98 ) { alert("¡Ganaste!\n(...de churro!)"); return 0; }
+		if ( tiros < 1 ) {
+				//esta = conec.substring("ok", 1);
+				junta = conec.toString();
+				//alert(junta); 
+				esta = junta.indexOf("no");
+				//alert(esta);
+				if ( esta > 0 ) { alert("¡Loooooooooooser!"); }
+		}
+		//Limpieza
+i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0;
+linea = [];
+linea1 = [];
+linea2 = [];
+linea3 = [];
+linea4 = [];
+linea5 = [];
+linea6 = [];
+linea7 = [];
+linea8 = [];
+linea9 = [];
+linea10 = [];
+
+	}
+
+	function Comprueba(){
+			for ( z=0; z<100; z++ ) {
+				if ( document.getElementsByTagName("td")[z].className == color_cambiar ) { cuenta++; 
+				if ( cuenta == 100 ) { 
+					alert("¡Victoriaaaaaaaa!"); }
+				//alert("¡Que loser! \n\nNo puedes ni con un jueguito."); break; } }
+		}	}	}
+
+function Ayuda(ayu){
+	if ( document.getElementById("score").value == "Ayuda" ) {
+		insts = "Intrucciones: (Revisar los 4 puntos -hacia abajo-) \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la tabla de la derecha hay cinco celdas, con sendos colores. Al hacer click en cualquiera de ellas, cambiara el color de los cuadros de la tabla izquierda; partiendo del primer cuadro de la esquina superior izquierda y afectando a todos los cuadros que esten junto a el y sean del mismo color. \n\n4. Solo tienes 11 intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla izquierda, habras perdido.";
+		alert(insts); }
+}
+
+function Nuevo() {
+	tiros=25;
+	i=0; j=10; k=20; l=30; m=40; ok=1;
+	linea1 = [];
+	linea2 = [];
+	linea3 = [];
+	linea4 = [];
+	linea5 = [];
+	linea6 = [];
+	linea7 = [];
+	linea8 = [];
+	linea9 = [];
+	linea10 = [];
+
+	document.getElementById('score').value = "Tiros restantes: " + tiros;
+
+		x=0;
+		var aleatorio;
+		for ( x=0; x<=99; x++) {
+		aleatorio = Math.floor((Math.random() * 5 + 1));
+			if ( aleatorio == 1 ) {
+				document.getElementsByTagName("td")[x].className = "plata"; }
+			if ( aleatorio == 2 ) {
+				document.getElementsByTagName("td")[x].className = "verde"; }
+			if ( aleatorio == 3 ) {
+				document.getElementsByTagName("td")[x].className = "purpura"; }
+			if ( aleatorio == 4 ) {
+				document.getElementsByTagName("td")[x].className = "anaranjado"; }
+			if ( aleatorio == 5 ) {
+				document.getElementsByTagName("td")[x].className = "fuccia"; }
+		//alert(aleatorio);
+		}
+		x=0;
+}
+
+
+function playSound() {
+	var soundfile = "pap.mp3";
+  document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+}
+
+//--></script>
+</head>
+<body bgcolor="#3399CC" align="center"><center>
+<audio> <source id="mySoundClip" src="pap.mp3"> </source>
+</audio>
+<table bgcolor="black" width="150" height="160" align="left">
+	<tr bgcolor="purple">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura">
+	<tr bgcolor="purple">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura">
+		<td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura">
+	<tr bgcolor="green">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde">
+	<tr bgcolor="green">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde">
+		<td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde">
+	<tr bgcolor="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia">
+	<tr bgcolor="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia">
+		<td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia">
+	<tr bgcolor="orange">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado">
+	<tr bgcolor="orange">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado">
+		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado">
+	<tr bgcolor="silver">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata"> <td class="plata"> <td class="plata"> <td class="plata"> <td class="plata"> <td class="plata">
+	<tr bgcolor="silver">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata">
+		<td class="plata"> <td class="plata"> <td class="plata"> <td class="plata"> <td class="plata"> <td class="plata">
+	</tr>
+	</table>
+
+<table bgcolor="#3399CC" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="150" height="160" align="right"
+	<tr>
+		<td class="verde" width="35px" height="35px" onClick="Cuales('verde')">
+		<td width="35px" height="35px" >
+		<td class="purpura"  width="35px" height="35px" onClick="Cuales('purpura')">
+	<tr>
+		<td  >
+		<td class="plata" width="35px" height="35px"  onClick="Cuales('plata')">
+		<td  >
+	<tr>
+		<td class="fuccia" width="35px" height="35px"  onClick="Cuales('fuccia')">
+		<td  >
+		<td class="anaranjado" width="35px" height="35px"  onClick="Cuales('anaranjado')">
+
+	</tr></table>
+<table width="120" height="160" align="center">
+	<tr>
+		<td align="center" valign="center" colspan="3"><p>
+		<input type="button" name="score" id="score" value="Ayuda" width="100px" onClick="Ayuda(this)"><br>
+		<input type="button" name="nuevo" id="nuevo" value="Nuevo Juego" onClick="Nuevo()">
+</table><p>
+<span id="pap">  </span>
+
+</center></body>
+</html>        
