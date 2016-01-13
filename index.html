@@ -1,10 +1,10 @@
 <html>
 <head><title>Bloques</title> 
 <style type="text/css">
-input.mina {color: #000000}
-input.man {color: #000000}
-input.mina:hover {background-color: #ff00ff; border-color: #ff00ff}
-input.man:hover {background-color: #3399cc; border-color: #3399cc}
+input {background-color: #3399cc; border-color: #3399cc}
+input.man {background-color: #3399cc; border-color: #3399cc}
+input.mina {background-color: #ff00ff; border-color: #ff00ff}
+input:hover {background-color: #aaffaa; border-color: #ff00ff}
 td {color: #ffffff}
 td.purpura {background-color: purple}
 td.verde {background-color: green}
@@ -21,30 +21,51 @@ Con esa lista, se asignara un nuevo color general a cada miembro de ella.
 */
 var i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0; nivel=0;
 tiros = 0; amo="";
+lista = [];
+conec = [];
+genero = "";
+nombre = "";
+	function Historia(quees) {
+		nombre = prompt("Por favor, escribe tu nombre.", "Maximo 13 caracteres");
+		if ( nombre.length > 13 ) { Historia(quees); return false; }
+		if ( nombre == null || nombre == "" || nombre == " " || nombre == "  " || nombre == "   " || nombre == "    " || nombre == "     " || nombre 
 
-	function Historia(genero) {
-		nombre = prompt("Por favor, escribe tu nombre.", "Chompiras");
-		if ( nombre == null || nombre == "" ) { Historia(genero); return false; }
-		if ( genero == "hombre" ) { 
+== "      " || nombre == "       " || nombre == "        " || nombre == "         " || nombre == "          " || nombre == "           " || nombre == "      
+
+      " || nombre == "             " ) {
+			 Historia(quees); return false; }
+		if ( quees == "hombre" ) { 
+			genero = "hombre";
 			amo = "Señor";
 			if ( document.getElementById("sini").checked == true ) { 
-			alert("En tierras lejanas del oriente, hay un reino que durante mucho tiempo ha estado sumido en la pobreza, bajo la tirania de sus opresores.");
+			alert("En tierras lejanas del oriente, hay un reino que durante mucho tiempo ha estado sumido en la pobreza, bajo la tirania de sus 
+
+opresores.");
 			alert("Sin embargo, no siempre fue asi. Hace unos siglos fue un reino lleno de abundancia, de prosperidad y armonia");
 			alert("Los viejos, cuentan de una profecia que no muchos creen: ");
-			alert("'Un hombre, un desconocido proveniente de tierras distantes, de apariencia herculea y de vigor inagotable, hara la diferencia. \nResolvera la tabla de los enigmas. Y liberara las arcas del tesoro ancestral, para despues tomar posesion del trono'");
-				if ( confirm("¿Seras tu, el Señor Caballero?") ) {
+			alert("'Un hombre, un desconocido proveniente de tierras distantes, de apariencia herculea y de vigor inagotable, hara la 
+
+diferencia. \nResolvera la tabla de los enigmas. Y liberara las arcas del tesoro ancestral, para despues tomar posesion del trono'");
+				if ( confirm("¿Seras tu, ese Caballero?") ) {
 					alert("Ya lo veremos, " +nombre+ "."); Nuevo(genero); return true;  }
-				alert("Eso crei... Lastima de cuerpo :D"); }
+				alert("Eso crei... Lastima de cuerpo :D");  }
 		}
 		if ( document.getElementById("sini").checked == false ) { alert("¿¿¿Por que sin historia??? \n¿No te gustan los cuentos?"); Nuevo(); } 
 	
-		if ( genero == "mujer" ) { 
+		if ( quees == "mujer" ) {
+				genero = "mujer";
 				amo = "Señora";
 			if ( document.getElementById("sini").checked == true ) {
 				alert("Se cuenta que en los dias de Sherezada, hubo un reino muy prospero llamado: \n\t\tReino de " + nombre);
-				alert("Este prospero lugar, era la envidia de muchos reinos circunvecinos. \nTanto, que en numerosas ocasiones fue blanco de ataques y estratagemas malintencionadas para arruinarlo.");
+				alert("Este prospero lugar, era la envidia de muchos reinos circunvecinos. \nTanto, que en numerosas ocasiones fue blanco de 
+
+ataques y estratagemas malintencionadas para arruinarlo.");
 				alert("En efecto, la prosperidad y armonia que en un tiempo fueron el orgullo del reino, un dia sucumbieron.");
-				alert("Al tiempo que su gloria cayo, en el reino empezo a correr el rumor de una profecia que dice que: \n\n'Un dia, una viajera proveniente de tierras lejanas, de astucia incomparable y de habilidades excepcionales, llegara al reino y sera la artifice de su restauracion; al devolverle la gloria que en otro tiempo perdio. \nDespues de lo cual, tomara posesion del trono a beneplacito de todos los subditos'.");
+				alert("Al tiempo que su gloria cayo, en el reino empezo a correr el rumor de una profecia que dice que: \n\n'Un dia, una 
+
+viajera proveniente de tierras lejanas, de astucia incomparable y de habilidades excepcionales, llegara al reino y sera la artifice de su restauracion; al 
+
+devolverle la gloria que en otro tiempo perdio. \nDespues de lo cual, tomara posesion del trono a beneplacito de todos los subditos'.");
 				if ( confirm("¿Seras tu, aquella? \n\nAceptar: Para si. \nCancelar: Para no.") ) {
 					alert( "Ya lo veremos "  + nombre + "."); 
 					Nuevo(genero); 
@@ -55,42 +76,34 @@ tiros = 0; amo="";
 		} 
 		
 function Nuevo(eloella) {
+		if ( genero == "" ) { 
+			pregunta = prompt("Eres hombre o mujer?", "mujer");
+			minusculas= pregunta.toLowerCase();
+			genero = minusculas; alert(genero); }
+	document.getElementById('imagen').style.display="none";
 	document.getElementById('inicio').style.display="none";
 	document.getElementById('caja').style.display="block";
-	if (  eloella == "mujer" ) { 
-		document.getElementById('nuevo').className="mina";
-		document.getElementById('jugador').className="mina";
-		document.getElementById('nivel').className="mina";
-		document.getElementById('score').className="mina";
-		document.getElementById('salir').className="mina";
-	}
-	if (  eloella == "hombre" ) {
-		document.getElementById('nuevo').style.className="man";
-		document.getElementById('jugador').className="man";
-		document.getElementById('nivel').className="man";
-		document.getElementById('score').className="man";
-		document.getElementById('salir').className="man";
-	}
+	if (  eloella == "mujer" ) { amo = "Señora"; }
+	if (  eloella == "hombre" ) { amo = "Señor"; }
 
 	tiros=24;
-	//i=0; j=10; k=20; l=30; m=40; ok=1; nivel=1;
-	i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; ok=1; nivel=0;
-
-	if ( document.getElementById('jug').style.display == "none" ) {
-		//nombre = prompt("¡Vamos a empezar! \nEscribe tu nombre: ", "O apodo, si quieres", "Titulo");
+	i=0; n=0; ok=1; nivel=0; lista=[];
+	Revuelve(); 
+	//if ( document.getElementById('jug').style.display == "none" ) {
+			//nombre = prompt("¡Vamos a empezar! \nEscribe tu nombre: ", "O apodo, si quieres", "Titulo");
 		document.getElementById('jugador').value = nombre;
 		document.getElementById('nuevo').disabled = true;
-		//document.getElementById('jug').style.visibility= "visible";
+			//document.getElementById('jug').style.visibility= "visible";
 		document.getElementById('jug').style.display= "block";
 		document.getElementById('nivel').value = "Nivel: " + nivel;
 		document.getElementById('score').value = "Intentos: " + tiros;
-		Revuelve(); }
+		//}
 	}
 
 	function Revuelve() {
 		x=0;
 		var aleatorio;
-		for ( x=0; x<=99; x++) {
+		for ( x=0; x<99; x++) {
 		aleatorio = Math.floor((Math.random() * 5 + 1));
 			if ( aleatorio == 1 ) {
 				document.getElementsByTagName("td")[x].className = "plata"; }
@@ -115,64 +128,149 @@ function Nuevo(eloella) {
 		if ( tiros > 0 ) { tiros = tiros - 1; }
 		ok=1;
 		document.getElementById('score').value = "Intentos: " + tiros;
-		lista = [];
-		conec = [];
+		//lista = [];
+		//conec = [];
 		lista[0] = 0;
 		conec[0] = "ok";
-		
-		for ( i=1; i<=99; i++) {
+
+
+/*		for ( i=1; i<99; i++) {
 			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
-				if ( i!=10 && i!=20 && i!=30 && i!=40 && i!=50 && i!=60 && i!=70 && i!=80 && i!=90 ) {
-				if ( i!=9 && i!=19 && i!=29 && i!=39 && i!=49 && i!=59 && i!=69 && i!=79 && i!=89 && i!=99 ) {
-					if ( conec[i-1] == "ok"|| conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i;
-						conec[i] = "ok";
-						ok++; }
-				}
-				}
-				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 || i==90 ) {
+				if ( i==0 ) {
+					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>0  && i<9 ) {
+					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==9 ) {
+					if ( conec[i-1] =="ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>10  && i<19 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>20  && i<29 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>30  && i<39 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>40  && i<49 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>50  && i<59 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>60  && i<69 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>70  && i<79 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>80  && i<89 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==90) {
+					if ( conec[i-10] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>90  && i<99 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==99 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 ) {
 					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i;
-						conec[i] = "ok";
-						ok++; }
-				}
-				if ( i==9 || i==19 || i==29 || i==39 || i==49 || i==59 || i==69 || i==79 || i==89|| i==99 ) {
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+				if ( i==19 || i==29 || i==39 || i==49 || i==59 || i==69 || i==79 || i==89 ) {
 					if ( conec[i-10] =="ok" || conec[i-1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i;
-						conec[i] = "ok";
-						ok++; }
-				}
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+
+			if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no"; }
 			}
-				if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no"; }
+		}
+*/
+		for ( i=1; i<100; i++) {
+			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
+				if ( i==0 ) {
+					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>0  && i<9 ) {
+					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==9 ) {
+					if ( conec[i-1] =="ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>10  && i<19 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>20  && i<29 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>30  && i<39 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>40  && i<49 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>50  && i<59 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>60  && i<69 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>70  && i<79 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>80  && i<89 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==90) {
+					if ( conec[i-10] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>90  && i<99 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==99 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 ) {
+					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+				if ( i==19 || i==29 || i==39 || i==49 || i==59 || i==69 || i==79 || i==89 ) {
+					if ( conec[i-10] =="ok" || conec[i-1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+
+			if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no"; }
+			}
 		}
 
-		for ( n=0; n<100; n++) {
+
+		for ( n=0; n<100; n++ ) {
 			if ( conec[n] == "ok" ) { document.getElementsByTagName("td")[n].className = nuevoColor; }
 		}
 		//alert(conec);
 		//Comprueba();
-		if ( ok == 99 ) { 
+		//alert(ok);
+		if ( ok > 99 ) { 
 			alert("¡Ganaste!"); 
 			limpieza(); 
 			nivel++; 
-				if ( nivel == 1 ) { tiros = 23; }; 
-				if ( nivel == 2 ) { tiros = 22; }; 
-				if ( nivel == 3 ) { tiros = 21; }; 
-				if ( nivel == 4 ) { tiros = 20 };
-				if ( nivel == 5 ) { tiros = 19 };
+				if ( nivel == 1 ) { tiros = 23; }
+				if ( nivel == 2 ) { tiros = 22; } 
+				if ( nivel == 3 ) { tiros = 21; } 
+				if ( nivel == 4 ) { tiros = 20; }
+				if ( nivel == 5 ) { tiros = 19; }
 
 			NuevoNivel(nivel, tiros);
 			return 0; }
 
 		if ( tiros < 1 ) {
-				//esta = conec.substring("ok", 1);
 				junta = conec.toString();
-				//alert(junta); 
-				esta = junta.indexOf("no");
+				esta = junta.indexOf("ok");
 				//alert(esta);
-				if ( esta > 0 ) { alert("¡Loooooooooooser!"); 
+				if ( esta >= 0 ) { alert("\t\t¡Loooooooooooser!"); 
 					if ( nivel == 0) { alert("Creo que mejor deberias buscar algun reto de 'tu nivel'"); }
-					if ( nivel == 1) { alert("¡Lo sabia! \nHay muchos retadores como tu, pululando por ahi. \nTrata cuando quieras"); }
+					if ( nivel == 1) { alert("¡Lo sabia! \nHay muchos retadores como tu, pululando por ahi. \nTrata cuando quieras."); }
 					if ( nivel == 2) { alert("Parecias ser mejor que el promedio, que decepcion..."); }
 					if ( nivel == 3) { alert("¡Buen intento! \nNo cualquiera alcanza estos niveles."); }
 					if ( nivel == 4) { alert("¡Vaya, por un momento pense que la profecia... \n¡Bah! Solo son historias."); }
@@ -180,13 +278,14 @@ function Nuevo(eloella) {
 							alert("Pero no te preocupes, hoy te ganaste mi respeto al llegar hasta aqui. \nSigue tu camino."); }
 					document.getElementById('caja').style.display = "none";
 					document.getElementById('imagen').style.display = "block";
+					document.bgColor="#ffffff";
 				}
 		}
 		limpieza();
 	}
 
 	function limpieza() {
-i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; lista=[];
+		i=0; n=0; ok=0; lista=[]; conec=[];
 	}
 
 	function Comprueba(){
@@ -199,9 +298,21 @@ i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; lista=[];
 	
 
 function Ayuda(ayu){
-	if ( document.getElementById("score").value == "Ayuda" ) {
-		insts = "Intrucciones: (Revisar los 4 puntos -hacia abajo-) \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la tabla de la derecha hay cinco celdas, con sendos colores. Al hacer click en cualquiera de ellas, cambiara el color de los cuadros de la tabla izquierda; partiendo del primer cuadro de la esquina superior izquierda y afectando a todos los cuadros que esten junto a el y sean del mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla izquierda, habras perdido.";
+	if ( ayu.value == "Ayuda" ) {
+		insts = "Intrucciones: (Revisar los 4 puntos -hacia abajo-) \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la 
+
+izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la tabla de la derecha hay cinco celdas, 
+
+con sendos colores. Al hacer click en cualquiera de ellas, cambiara el color de los cuadros de la tabla izquierda; partiendo del primer cuadro de la esquina 
+
+superior izquierda y afectando a todos los cuadros que esten junto a el y sean del mismo color. \n\n4. Solo tienes algunos intentos disponibles en total 
+
+para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla izquierda, habras perdido.";
 		alert(insts); }
+	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); }
+	if ( ayu.name == "nivel" ) { alert("Este es el nivel actual en el que estas."); }
+	if ( ayu.name == "score" ) { alert("El numero de movimientos que te quedan en el juego."); }
+	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); }
 	}
 	
 	function NuevoNivel(n_nivel, n_tiros) {
@@ -234,7 +345,9 @@ function Ayuda(ayu){
 					alert("¡La profecia era cierta! ¡Majestad, eres tu! \n¡Ven, " +amo+ "! \nDebo presentarte ante el pueblo.");
 					nombre_bien = nombre.toUpperCase();
 					alert(nombre_bien + " completo los desafios satisfactoriamente y con creces.");
-					alert("Despues de eso, como decia la profecia, tomo posesion del trono y asi del reino. \nAsi empezo el resurgimiento de la prosperidad y gloria del \n\n\t\t*** Reino de " + nombre_bien + " ***");
+					alert("Despues de eso, como decia la profecia, tomo posesion del trono y asi del reino. \nAsi empezo el 
+
+resurgimiento de la prosperidad y gloria del \n\n\t\t*** Reino de " + nombre_bien + " ***");
 					document.getElementById('nuevo').value = "Reto terminado";
 					document.getElementById('nuevo').disabled = false;
 					document.getElementById('jug').innerHTML = "¡Salve!";
@@ -250,7 +363,7 @@ function playSound() {
 
 //--></script>
 </head>
-<body bgcolor="#3399CC" align="center"><center>
+<body bgcolor="#3399cc" align="center"><center>
 <audio> <source id="mySoundClip" src="pap.mp3"> </source>
 </audio>
 <div id="caja" style="width:267px; background-color:brown; display: none" ><center>
@@ -297,13 +410,17 @@ function playSound() {
 		<td class="anaranjado">
 		<td class="anaranjado">
 		<td class="anaranjado">
-		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado">
+		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td 
+
+class="anaranjado">
 	<tr>
 		<td class="anaranjado">
 		<td class="anaranjado">
 		<td class="anaranjado">
 		<td class="anaranjado">
-		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado">
+		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td 
+
+class="anaranjado">
 	<tr>
 		<td class="plata">
 		<td class="plata">
@@ -328,14 +445,17 @@ function playSound() {
 	</tr>
 	</table>
 
-<table bgcolor="#3399CC" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="117" height="180">
+<table bgcolor="#3399CC" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-
+
+color: #000000" width="117" height="180">
 	<tr>
 		<td colspan="10" bgcolor="teal" align="center" valign="center" height="20">
 			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:105px" onClick="Nuevo()" />
 			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div>
-			<input type="button" name="score" id="jugador" class="" value="Ayuda" style="width:105px" onClick="Ayuda(this)" /><p>
-			<input type="button" name="score" id="nivel" class="" value="Nivel" style="width:105px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="score" id="score" class="" value="Ayuda" style="width:105px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:105px" onClick="Ayuda(this)" /><p>
+			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:105px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="score" id="score" class="" value="Intentos" style="width:105px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:105px" onClick="Ayuda(this)" /><br>
 			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:105px" onClick="window.close();" /><br>
 	</tr></table>
 </center></div><p>
@@ -347,42 +467,1081 @@ function playSound() {
 <label id="sinis"><input type="checkbox" id="sini" checked> Mostrar Historia </label>
 </td></tr></table>
 </div>
-<div id="imagen" style="display: none" width="300" height="300">
-<svg xmlns="http://www.w3.org/2000/svg" class="detail convertSvgInline replaced-svg" id="imgView" style="display: block;" fill="#000000" viewBox="0 0 512 512" x="0px" y="0px" width="200px" height="200px" data-id="23678" xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" data-kw="smiley10">
-<g>
-	<path fill="" d="M 256 512 c 141.385 0 256 -114.615 256 -256 S 397.385 0 256 0 C 114.615 0 0 114.615 0 256 S 114.615 512 256 512 Z M 256 48 c 114.875 0 208 93.125 208 208 s -93.125 208 -208 208 S 48 370.875 48 256 S 141.125 48 256 48 Z M 256 299.38 c 57.975 0 113.115 -15.403 160 -42.46 C 408.713 346.139 339.436 416 256 416 c -83.434 0 -152.711 -69.936 -160 -159.152 C 142.885 283.904 198.025 299.38 256 299.38 Z M 128 176 c 0 26.51 14.327 48 32 48 s 32 -21.49 32 -48 s -14.327 -48 -32 -48 S 128 149.49 128 176 Z M 320 176 c 0 26.51 14.326 48 32 48 s 32 -21.49 32 -48 s -14.326 -48 -32 -48 S 320 149.49 320 176 Z" />
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
+<div id="imagen" style="display: none; font-size: 8pt" width="300" height="300">
+<pre style="font: 8px/4px monospace;"><span style="color: #ffffff;"></span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #fefefe;">#</span><span style="color: #fffdfe;">#</span><span style="color: #fbfff6;">#</span><span style="color: #f7fff6;">#</span><span 
+
+style="color: #fffbff;">#</span><span style="color: #f8fff5;">#</span><span style="color: #f8ffff;">#</span><span style="color: #f8fffd;">#</span><span 
+
+style="color: #f7fff9;">#</span><span style="color: #fff9ff;">#</span><span style="color: #fffffa;">#</span><span style="color: #fffff3;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #f7fef7;">#</span><span style="color: #f9feff;">#</span><span style="color: #fbfeff;">#</span><span 
+
+style="color: #f4fff9;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fdfeff;">#</span><span style="color: #fbfcf6;">#</span><span style="color: #f9fcdf;">#</span><span style="color: #fbfef3;">#</span><span style="color: 
+
+#f0feef;">#</span><span style="color: #f0fcf8;">#</span><span style="color: #effcf5;">#</span><span style="color: #eefbf1;">#</span><span style="color: 
+
+#fefbf2;">#</span><span style="color: #f9f7f8;">#</span><span style="color: #f5f5fd;">#</span><span style="color: #f5fbf1;">#</span><span style="color: 
+
+#f2f9f1;">#</span><span style="color: #fffff4;">#</span><span style="color: #feffff;">#</span><span style="color: #fef8fc;">#</span><span style="color: 
+
+#fefefe;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###############</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #f3fdf2;">#</span><span style="color: #fff0f2;">#</span><span style="color: 
+
+#e3bba1;">#</span><span style="color: #e3ac51;">#</span><span style="color: #e69800;">#</span><span style="color: #f99813;">#</span><span style="color: 
+
+#f8980e;">#</span><span style="color: #f7970c;">#</span><span style="color: #ff9814;">#</span><span style="color: #fe9112;">#</span><span style="color: 
+
+#f78a11;">#</span><span style="color: #df9939;">#</span><span style="color: #ebb398;">#</span><span style="color: #ffdcc4;">#</span><span style="color: 
+
+#fffffd;">#</span><span style="color: #eff3f4;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">################
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#############</span><span style="color: #fcfffa;">#</span><span style="color: 
+
+#fefefc;">#</span><span style="color: #eeffff;">#</span><span style="color: #f7eee9;">#</span><span style="color: #e1a956;">#</span><span style="color: 
+
+#e79726;">#</span><span style="color: #fc940d;">#</span><span style="color: #f49625;">#</span><span style="color: #f89e24;">#</span><span style="color: 
+
+#f9a125;">#</span><span style="color: #f6a323;">#</span><span style="color: #f7a422;">#</span><span style="color: #f8a521;">##</span><span style="color: 
+
+#f9a221;">#</span><span style="color: #f89f21;">##</span><span style="color: #f69a1d;">#</span><span style="color: #e78522;">#</span><span style="color: 
+
+#f59411;">#</span><span style="color: #db9f27;">#</span><span style="color: #f6cfbe;">#</span><span style="color: #f1ffff;">#</span><span style="color: 
+
+#f3f5df;">#</span><span style="color: #f4eff5;">#</span><span style="color: #fffeff;">#</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#ffffff;">#############
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##########</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #f2fddf;">#</span><span style="color: #fce2ef;">#</span><span style="color: 
+
+#eb9600;">#</span><span style="color: #ff922c;">#</span><span style="color: #e79518;">#</span><span style="color: #f9a521;">#</span><span style="color: 
+
+#fba629;">#</span><span style="color: #f8af14;">#</span><span style="color: #fdb120;">#</span><span style="color: #feba29;">#</span><span style="color: 
+
+#fcbf30;">#</span><span style="color: #fdc032;">#</span><span style="color: #fec039;">#</span><span style="color: #febf3c;">#</span><span style="color: 
+
+#fdbd35;">#</span><span style="color: #feba31;">#</span><span style="color: #f8af22;">#</span><span style="color: #fca91d;">#</span><span style="color: 
+
+#f5a922;">#</span><span style="color: #f69b30;">#</span><span style="color: #f39b20;">#</span><span style="color: #f89337;">#</span><span style="color: 
+
+#f99300;">#</span><span style="color: #ddaf8b;">#</span><span style="color: #f5f8ed;">#</span><span style="color: #eff7fa;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">############
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##########</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fbfbfb;">##</span><span style="color: #eca53b;">#</span><span style="color: #fb9123;">#</span><span style="color: #ff9a0f;">#</span><span style="color: 
+
+#eea836;">#</span><span style="color: #f4b51a;">#</span><span style="color: #ffb923;">#</span><span style="color: #ffca3a;">#</span><span style="color: 
+
+#ffce6b;">#</span><span style="color: #fbdb88;">#</span><span style="color: #fce6ad;">#</span><span style="color: #fdebbb;">#</span><span style="color: 
+
+#feebc3;">#</span><span style="color: #ffeacd;">#</span><span style="color: #ffebc6;">#</span><span style="color: #ffeabb;">#</span><span style="color: 
+
+#ffe8b2;">#</span><span style="color: #ffe79a;">#</span><span style="color: #fdd66f;">#</span><span style="color: #ffc653;">#</span><span style="color: 
+
+#fdb928;">#</span><span style="color: #ffa725;">#</span><span style="color: #fab124;">#</span><span style="color: #f39b31;">#</span><span style="color: 
+
+#f39c0e;">#</span><span style="color: #e89022;">#</span><span style="color: #e7d6ba;">#</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">###########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#######</span><span style="color: #fdfaff;">#</span><span style="color: 
+
+#fefffd;">#</span><span style="color: #fbfeff;">#</span><span style="color: #f3ffff;">#</span><span style="color: #efbeba;">#</span><span style="color: 
+
+#f0902a;">#</span><span style="color: #f89e26;">#</span><span style="color: #fba627;">#</span><span style="color: #fdb320;">#</span><span style="color: 
+
+#fdc33b;">#</span><span style="color: #fcd56c;">#</span><span style="color: #ffe4a8;">#</span><span style="color: #ffecbe;">#</span><span style="color: 
+
+#fff2cf;">#</span><span style="color: #feedc2;">##</span><span style="color: #feecc4;">###</span><span style="color: #feedc2;">###</span><span style="color: 
+
+#ffebc4;">#</span><span style="color: #ffeac3;">#</span><span style="color: #feedc2;">#</span><span style="color: #fbe5ac;">#</span><span style="color: 
+
+#fada8d;">#</span><span style="color: #f7c552;">#</span><span style="color: #fdb225;">#</span><span style="color: #ffa924;">#</span><span style="color: 
+
+#faa332;">#</span><span style="color: #ef910d;">#</span><span style="color: #f1a452;">#</span><span style="color: #def6f8;">#</span><span style="color: 
+
+#fdebf7;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fefefe;">##</span><span style="color: #ffffff;">########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#######</span><span style="color: #fffbff;">#</span><span style="color: 
+
+#f1f7f5;">#</span><span style="color: #fffef1;">#</span><span style="color: #e2aa31;">#</span><span style="color: #ff9727;">#</span><span style="color: 
+
+#eca414;">#</span><span style="color: #f6ae1b;">#</span><span style="color: #f8c43c;">#</span><span style="color: #ffd988;">#</span><span style="color: 
+
+#ffe0ad;">#</span><span style="color: #feedcf;">#</span><span style="color: #ffefc1;">#</span><span style="color: #fdedb9;">#</span><span style="color: 
+
+#fbecb3;">#</span><span style="color: #fdebbd;">##</span><span style="color: #fdebbb;">###</span><span style="color: #fdebbd;">###</span><span style="color: 
+
+#ffebc0;">#</span><span style="color: #ffeabf;">#</span><span style="color: #ffe6bc;">#</span><span style="color: #ffe7bc;">#</span><span style="color: 
+
+#ffe8bc;">#</span><span style="color: #ffedb8;">#</span><span style="color: #fbdc7f;">#</span><span style="color: #f9c24e;">#</span><span style="color: 
+
+#f9ab13;">#</span><span style="color: #f4a52e;">#</span><span style="color: #ffa72f;">#</span><span style="color: #ff9000;">#</span><span style="color: 
+
+#eef1f6;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #ffffff;">#########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#####</span><span style="color: #fffeff;">#</span><span style="color: 
+
+#fffcfd;">#</span><span style="color: #f4ffff;">#</span><span style="color: #f9ffe8;">#</span><span style="color: #fd930c;">#</span><span style="color: 
+
+#f4951f;">#</span><span style="color: #fea82d;">#</span><span style="color: #f8af14;">#</span><span style="color: #fdd367;">#</span><span style="color: 
+
+#fee8b6;">#</span><span style="color: #ffe8b8;">###</span><span style="color: #ffe9b7;">########</span><span style="color: #ffe9b8;">###########</span><span 
+
+style="color: #fcdb7e;">#</span><span style="color: #fcbc27;">#</span><span style="color: #ffb228;">#</span><span style="color: #f29b27;">#</span><span 
+
+style="color: #f48f0d;">#</span><span style="color: #ffefe7;">#</span><span style="color: #fff1ff;">#</span><span style="color: #fffbff;">#</span><span 
+
+style="color: #ffffff;">########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#####</span><span style="color: #fffeff;">#</span><span style="color: 
+
+#f1f6fa;">#</span><span style="color: #fffede;">#</span><span style="color: #f29f1b;">#</span><span style="color: #ef9d20;">#</span><span style="color: 
+
+#faaa21;">#</span><span style="color: #f7bc24;">#</span><span style="color: #ffcf66;">#</span><span style="color: #fde5a9;">#</span><span style="color: 
+
+#fee9b4;">#</span><span style="color: #ffe8b2;">######################</span><span style="color: #ffe8b4;">#</span><span style="color: 
+
+#ffd680;">#</span><span style="color: #fdb724;">#</span><span style="color: #f9a31c;">#</span><span style="color: #f49a22;">#</span><span style="color: 
+
+#fd8c16;">#</span><span style="color: #f1f2f4;">#</span><span style="color: #f1f1f1;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#fefefe;">#</span><span style="color: #ffffff;">######
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#####</span><span style="color: #fbfcff;">#</span><span style="color: 
+
+#fffeef;">#</span><span style="color: #e59e22;">#</span><span style="color: #fe971e;">#</span><span style="color: #f6a033;">#</span><span style="color: 
+
+#fab929;">#</span><span style="color: #ffd67a;">#</span><span style="color: #fee9b0;">#</span><span style="color: #fde4ab;">#</span><span style="color: 
+
+#fee5ad;">#</span><span style="color: #fee8ac;">###</span><span style="color: #ffe7ae;">########</span><span style="color: #ffe7ac;">###########</span><span 
+
+style="color: #fee8af;">#</span><span style="color: #ffe7ae;">#</span><span style="color: #f6dd80;">#</span><span style="color: #ffc139;">#</span><span 
+
+style="color: #fcac23;">#</span><span style="color: #f7a619;">#</span><span style="color: #ee8c00;">#</span><span style="color: #ffe5de;">#</span><span 
+
+style="color: #f4f4f4;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">######
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">####</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#f8f8ff;">#</span><span style="color: #d1ad55;">#</span><span style="color: #ef9922;">#</span><span style="color: #f8a420;">#</span><span style="color: 
+
+#fbba2a;">#</span><span style="color: #ffd268;">#</span><span style="color: #ffe8a5;">#</span><span style="color: #fedea5;">#</span><span style="color: 
+
+#fde5a5;">#####</span><span style="color: #fee6a6;">###</span><span style="color: #fde5a5;">##################</span><span style="color: 
+
+#ffe9ad;">#</span><span style="color: #fbd87c;">#</span><span style="color: #fdba2e;">#</span><span style="color: #fca925;">#</span><span style="color: 
+
+#f4961a;">#</span><span style="color: #ee8a10;">#</span><span style="color: #e7ebec;">#</span><span style="color: #fff5fc;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">#####
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #f2ded3;">#</span><span style="color: #ff9326;">#</span><span style="color: #f3a819;">#</span><span style="color: 
+
+#fbb724;">#</span><span style="color: #ffcd5c;">#</span><span style="color: #fce19a;">#</span><span style="color: #fbe3a3;">#</span><span style="color: 
+
+#fcdd9c;">#</span><span style="color: #ffe4a1;">##########################</span><span style="color: #fbe697;">#</span><span style="color: 
+
+#ffe6b4;">#</span><span style="color: #fcd66b;">#</span><span style="color: #fcba30;">#</span><span style="color: #f9a720;">#</span><span style="color: 
+
+#f69524;">#</span><span style="color: #d88d27;">#</span><span style="color: #e4fcef;">#</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">####
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fbfbfb;">#</span><span style="color: #e89201;">#</span><span style="color: #f7a51b;">#</span><span style="color: #f5b11e;">#</span><span style="color: 
+
+#fec434;">#</span><span style="color: #ffd98c;">#</span><span style="color: #ffdd98;">#</span><span style="color: #ffe099;">#</span><span style="color: 
+
+#feeaa5;">#</span><span style="color: #ffe29e;">#####</span><span style="color: #fee19d;">###</span><span style="color: 
+
+#ffe29e;">##################</span><span style="color: #ffdba3;">#</span><span style="color: #fbdf95;">#</span><span style="color: #ffe097;">#</span><span 
+
+style="color: #fcc449;">#</span><span style="color: #fcb421;">#</span><span style="color: #fda220;">#</span><span style="color: #f99639;">#</span><span 
+
+style="color: #f3d0bc;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">####
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##</span><span style="color: #fbf5ff;">#</span><span style="color: 
+
+#e5f5f2;">#</span><span style="color: #dcb574;">#</span><span style="color: #f7971c;">#</span><span style="color: #faad23;">#</span><span style="color: 
+
+#f9bc23;">#</span><span style="color: #fdd262;">#</span><span style="color: #ffdf98;">#</span><span style="color: #ffdf94;">###########</span><span 
+
+style="color: #fde295;">########</span><span style="color: #fee195;">##</span><span style="color: #ffe697;">#</span><span style="color: 
+
+#f8da92;">#</span><span style="color: #ffdaa3;">#</span><span style="color: #fddb93;">#</span><span style="color: #ffe098;">#</span><span style="color: 
+
+#ffdd95;">#</span><span style="color: #fddd90;">#</span><span style="color: #ffe097;">#</span><span style="color: #fee396;">#</span><span style="color: 
+
+#ffe296;">#</span><span style="color: #ffde94;">#</span><span style="color: #ffd67e;">#</span><span style="color: #ffbe2e;">#</span><span style="color: 
+
+#fcb027;">#</span><span style="color: #e9961e;">#</span><span style="color: #e68d00;">#</span><span style="color: #e2ecf5;">#</span><span style="color: 
+
+#fffefc;">#</span><span style="color: #feffff;">#</span><span style="color: #ffffff;">###
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##</span><span style="color: #fffff8;">#</span><span style="color: 
+
+#faf9f7;">#</span><span style="color: #ff9006;">#</span><span style="color: #f6a31f;">#</span><span style="color: #fab826;">#</span><span style="color: 
+
+#ffcc4c;">#</span><span style="color: #fdd784;">#</span><span style="color: #fddd92;">#</span><span style="color: #ffde8f;">###########</span><span 
+
+style="color: #ffe090;">########</span><span style="color: #fde090;">##</span><span style="color: #fadd99;">#</span><span style="color: 
+
+#fce78c;">#</span><span style="color: #f5e391;">#</span><span style="color: #cab77c;">#</span><span style="color: #928751;">#</span><span style="color: 
+
+#7e7846;">#</span><span style="color: #c3b479;">#</span><span style="color: #fdea9d;">#</span><span style="color: #fce190;">#</span><span style="color: 
+
+#fde090;">#</span><span style="color: #fddc8d;">#</span><span style="color: #ffdb94;">#</span><span style="color: #fece52;">#</span><span style="color: 
+
+#fcb71b;">#</span><span style="color: #faa719;">#</span><span style="color: #ec842d;">#</span><span style="color: #d5ba8d;">#</span><span style="color: 
+
+#e8eff7;">#</span><span style="color: #fefefc;">#</span><span style="color: #ffffff;">###
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fffae8;">#</span><span style="color: #d38926;">#</span><span style="color: #ee9a37;">#</span><span style="color: #ffad2d;">#</span><span style="color: 
+
+#f9bd1f;">#</span><span style="color: #fdda7e;">#</span><span style="color: #fed989;">#</span><span style="color: #ffdb87;">#</span><span style="color: 
+
+#fcdc87;">###</span><span style="color: #fcdb8a;">##</span><span style="color: #ffde8d;">######</span><span style="color: #fdde8c;">########</span><span 
+
+style="color: #ffe17a;">#</span><span style="color: #ffde93;">#</span><span style="color: #f8eb8d;">#</span><span style="color: #140603;">#</span><span 
+
+style="color: #adb0b5;">#</span><span style="color: #d5d5d5;">#</span><span style="color: #d6d6d6;">#</span><span style="color: #d7d7d7;">#</span><span 
+
+style="color: #d5d5d5;">#</span><span style="color: #a1a1a1;">#</span><span style="color: #000600;">#</span><span style="color: #ffe6a3;">#</span><span 
+
+style="color: #ffe490;">#</span><span style="color: #fbd38b;">#</span><span style="color: #ffda70;">#</span><span style="color: #ffc13b;">#</span><span 
+
+style="color: #fab124;">#</span><span style="color: #f39d22;">#</span><span style="color: #ff860c;">#</span><span style="color: #eadfe5;">#</span><span 
+
+style="color: #f1f6ff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">##
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#f3feff;">#</span><span style="color: #f89015;">#</span><span style="color: #ffa317;">#</span><span style="color: #feb52b;">#</span><span style="color: 
+
+#f9c229;">#</span><span style="color: #fdd979;">#</span><span style="color: #fed885;">#</span><span style="color: #ffd984;">#</span><span style="color: 
+
+#feda82;">###</span><span style="color: #feda84;">##</span><span style="color: #ffdc86;">######</span><span style="color: #fcdc85;">########</span><span 
+
+style="color: #f5d580;">#</span><span style="color: #c7bc7c;">#</span><span style="color: #8f8fa9;">#</span><span style="color: #d8dad7;">#</span><span 
+
+style="color: #d3d4ce;">#</span><span style="color: #e8e8e8;">#</span><span style="color: #e9e9e9;">#</span><span style="color: #eaeaea;">#</span><span 
+
+style="color: #e7e7e7;">#</span><span style="color: #dddddd;">#</span><span style="color: #e6dbec;">#</span><span style="color: #868f8e;">#</span><span 
+
+style="color: #b3a662;">#</span><span style="color: #feda7a;">#</span><span style="color: #fcd586;">#</span><span style="color: #fed034;">#</span><span 
+
+style="color: #fbb728;">#</span><span style="color: #f6a321;">#</span><span style="color: #fa961c;">#</span><span style="color: #e6cece;">#</span><span 
+
+style="color: #f9f5e9;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">##
+</span><span style="color: #ffffff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#efdfc8;">#</span><span style="color: #e99125;">#</span><span style="color: #e5b632;">#</span><span style="color: #ffbd2b;">#</span><span style="color: 
+
+#fac835;">#</span><span style="color: #ffd777;">#</span><span style="color: #ffd680;">#</span><span style="color: #ffd880;">#</span><span style="color: 
+
+#fed980;">###</span><span style="color: #feda7c;">########</span><span style="color: #fedb7d;">########</span><span style="color: #decf8c;">#</span><span 
+
+style="color: #babbbd;">#</span><span style="color: #d7d7cb;">#</span><span style="color: #f2f0f1;">#</span><span style="color: #e0e0e0;">#</span><span 
+
+style="color: #f4f4f4;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #f5f5f5;">#</span><span 
+
+style="color: #f4f4f4;">#</span><span style="color: #dde3e3;">#</span><span style="color: #cec9c5;">#</span><span style="color: #b0b0b8;">#</span><span 
+
+style="color: #c1b26f;">#</span><span style="color: #fed57d;">#</span><span style="color: #fac545;">#</span><span style="color: #febd2d;">#</span><span 
+
+style="color: #f8ab21;">#</span><span style="color: #f39318;">#</span><span style="color: #de9314;">#</span><span style="color: #e1e7e7;">#</span><span 
+
+style="color: #fbfbfb;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffeff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fbfbf9;">#</span><span style="color: 
+
+#e2973a;">#</span><span style="color: #e19f31;">#</span><span style="color: #f1b032;">#</span><span style="color: #febf24;">#</span><span style="color: 
+
+#fec748;">#</span><span style="color: #fcd570;">###</span><span style="color: #fdd671;">###</span><span style="color: #fdd772;">########</span><span 
+
+style="color: #ffd974;">#####</span><span style="color: #ffe178;">#</span><span style="color: #f8d674;">#</span><span style="color: #ffe979;">#</span><span 
+
+style="color: #746e72;">#</span><span style="color: #dbe1d3;">#</span><span style="color: #f0f0f0;">#</span><span style="color: #f2f2f2;">#</span><span 
+
+style="color: #f6f6f6;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #f1f1f1;">#</span><span 
+
+style="color: #eaeaea;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #f2f2f2;">#</span><span style="color: #eeeeee;">#</span><span 
+
+style="color: #dcdcdc;">#</span><span style="color: #746e7c;">#</span><span style="color: #ffea7c;">#</span><span style="color: #ffd55f;">#</span><span 
+
+style="color: #ffbe29;">#</span><span style="color: #fcb326;">#</span><span style="color: #ff9a2b;">#</span><span style="color: #f68c04;">#</span><span 
+
+style="color: #dfe7fe;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffeff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fbfbf9;">#</span><span style="color: 
+
+#f69021;">#</span><span style="color: #f5a127;">#</span><span style="color: #f5bd2a;">#</span><span style="color: #febe28;">#</span><span style="color: 
+
+#fec844;">#</span><span style="color: #fecf63;">###</span><span style="color: #ffd165;">###</span><span style="color: #ffd366;">########</span><span 
+
+style="color: #ffd467;">##</span><span style="color: #fed664;">###</span><span style="color: #ffd567;">#</span><span style="color: #fbd858;">#</span><span 
+
+style="color: #846f1e;">#</span><span style="color: #dedce1;">#</span><span style="color: #dfe0d8;">#</span><span style="color: #f4f4f4;">#</span><span 
+
+style="color: #f6f6f6;">#</span><span style="color: #f9f9f9;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #ffffff;">##</span><span 
+
+style="color: #f0f0f0;">#</span><span style="color: #fafafa;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #f4f4f4;">#</span><span 
+
+style="color: #e7e7e7;">#</span><span style="color: #d8d9d1;">#</span><span style="color: #71660a;">#</span><span style="color: #ffd359;">#</span><span 
+
+style="color: #ffc22f;">#</span><span style="color: #fdb724;">#</span><span style="color: #faa723;">#</span><span style="color: #f69723;">#</span><span 
+
+style="color: #f3d1d2;">#</span><span style="color: #f1f1f1;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffeff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fcfcfa;">#</span><span style="color: 
+
+#ec9508;">#</span><span style="color: #fca520;">#</span><span style="color: #ffc526;">#</span><span style="color: #febe29;">#</span><span style="color: 
+
+#fec841;">#</span><span style="color: #ffcc59;">###</span><span style="color: #ffce5b;">###</span><span style="color: #ffd05c;">########</span><span 
+
+style="color: #ffd15d;">##</span><span style="color: #fcd458;">###</span><span style="color: #ffd55f;">#</span><span style="color: #ffde5b;">#</span><span 
+
+style="color: #3d2815;">#</span><span style="color: #e5e7e2;">#</span><span style="color: #f3effd;">#</span><span style="color: #f7f7f7;">#</span><span 
+
+style="color: #f9f9f9;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #959595;">#</span><span style="color: #000000;">##</span><span 
+
+style="color: #818181;">#</span><span style="color: #fafafa;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #f9f9f9;">#</span><span 
+
+style="color: #f0f0f0;">#</span><span style="color: #dee1e6;">#</span><span style="color: #402d40;">#</span><span style="color: #ffd65f;">#</span><span 
+
+style="color: #ffc533;">#</span><span style="color: #fcba25;">#</span><span style="color: #f0ae1a;">#</span><span style="color: #f09836;">#</span><span 
+
+style="color: #d89688;">#</span><span style="color: #ececec;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffdff;">#</span><span style="color: #fff7fd;">#</span><span style="color: #f1dad2;">#</span><span style="color: 
+
+#f6961b;">#</span><span style="color: #fcac23;">#</span><span style="color: #ffbd29;">#</span><span style="color: #fec22e;">#</span><span style="color: 
+
+#fdc33b;">#</span><span style="color: #ffc849;">###</span><span style="color: #ffd050;">#</span><span style="color: #fdc844;">#</span><span style="color: 
+
+#ffd450;">#</span><span style="color: #fbcc3e;">#</span><span style="color: #facb41;">#</span><span style="color: #f6c44b;">#</span><span style="color: 
+
+#fdcb4e;">#</span><span style="color: #fdcc4c;">#</span><span style="color: #fece48;">#</span><span style="color: #fdcb4e;">#</span><span style="color: 
+
+#f9c74e;">#</span><span style="color: #ffd04a;">##</span><span style="color: #ffd24b;">###</span><span style="color: #fbce57;">#</span><span style="color: 
+
+#ffda54;">#</span><span style="color: #9aa2ad;">#</span><span style="color: #ececec;">#</span><span style="color: #f6f6f6;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #cecece;">#</span><span style="color: #2d2d2d;">#</span><span style="color: 
+
+#242424;">#</span><span style="color: #272727;">#</span><span style="color: #2f2f2f;">#</span><span style="color: #c9c9c9;">#</span><span style="color: 
+
+#fbfbfb;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #ebeae5;">#</span><span style="color: 
+
+#a8aabf;">#</span><span style="color: #ffd94f;">#</span><span style="color: #fec230;">#</span><span style="color: #fcbf29;">#</span><span style="color: 
+
+#ffae1e;">#</span><span style="color: #f69916;">#</span><span style="color: #dc871c;">#</span><span style="color: #e7e7e7;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffeff;">#</span><span style="color: #fffbff;">#</span><span style="color: #e0b690;">#</span><span style="color: 
+
+#f79b1e;">#</span><span style="color: #fcb026;">#</span><span style="color: #ffc22c;">#</span><span style="color: #fdc031;">#</span><span style="color: 
+
+#fcc336;">#</span><span style="color: #fec53a;">###</span><span style="color: #fcc73d;">#</span><span style="color: #ffcb39;">#</span><span style="color: 
+
+#ffca4c;">#</span><span style="color: #dea941;">#</span><span style="color: #ad761b;">#</span><span style="color: #965c13;">#</span><span style="color: 
+
+#9b6117;">#</span><span style="color: #c38a3b;">#</span><span style="color: #eab744;">#</span><span style="color: #ffd448;">#</span><span style="color: 
+
+#f9cd2e;">#</span><span style="color: #fecb3c;">##</span><span style="color: #fece3e;">###</span><span style="color: #ffd637;">#</span><span style="color: 
+
+#f7d033;">#</span><span style="color: #c2d1d6;">#</span><span style="color: #f3f3f3;">#</span><span style="color: #f7f7f7;">#</span><span style="color: 
+
+#f6f6f6;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #555555;">#</span><span style="color: #404040;">#</span><span style="color: 
+
+#414141;">#</span><span style="color: #474747;">#</span><span style="color: #3d3d3d;">#</span><span style="color: #444444;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #fafafa;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #f4f3f1;">#</span><span style="color: 
+
+#d1d3ec;">#</span><span style="color: #fad04a;">#</span><span style="color: #ffc432;">#</span><span style="color: #fdc02a;">#</span><span style="color: 
+
+#ffb226;">#</span><span style="color: #f49c14;">#</span><span style="color: #fb9212;">#</span><span style="color: #e2e2e2;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fafff6;">#</span><span style="color: #f2f8f4;">#</span><span style="color: #e0a265;">#</span><span style="color: 
+
+#f29e1a;">#</span><span style="color: #fdb427;">#</span><span style="color: #fdbd27;">#</span><span style="color: #ffc132;">#</span><span style="color: 
+
+#ffc136;">#</span><span style="color: #fbc32e;">#</span><span style="color: #ffc53d;">#</span><span style="color: #ffc53a;">#</span><span style="color: 
+
+#fdc935;">#</span><span style="color: #b0791c;">#</span><span style="color: #733913;">#</span><span style="color: #804207;">#</span><span style="color: 
+
+#85440a;">#</span><span style="color: #7b3e05;">#</span><span style="color: #7c3f06;">##</span><span style="color: #7e3b0e;">#</span><span style="color: 
+
+#6c2900;">#</span><span style="color: #9b5929;">#</span><span style="color: #fcd226;">#</span><span style="color: #fac43d;">#</span><span style="color: 
+
+#ffcc35;">###</span><span style="color: #fbc91c;">#</span><span style="color: #efcb2c;">#</span><span style="color: #b1b9cc;">#</span><span style="color: 
+
+#f4f4f2;">#</span><span style="color: #f6f6f8;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #ffffff;">#</span><span style="color: 
+
+#a7a7a7;">#</span><span style="color: #5d5d5d;">#</span><span style="color: #565656;">#</span><span style="color: #5f5f5f;">#</span><span style="color: 
+
+#525252;">#</span><span style="color: #949494;">#</span><span style="color: #fefefe;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#f8f8f8;">#</span><span style="color: #fffffb;">#</span><span style="color: #c7c4d7;">#</span><span style="color: #f3da28;">#</span><span style="color: 
+
+#ffc331;">#</span><span style="color: #ffbf2a;">#</span><span style="color: #f3b427;">#</span><span style="color: #f9a61c;">#</span><span style="color: 
+
+#f39325;">#</span><span style="color: #e3e3e3;">#</span><span style="color: #fafafa;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #f8fdf6;">#</span><span style="color: #f0f7f0;">#</span><span style="color: #dea15e;">#</span><span style="color: 
+
+#f39f1b;">#</span><span style="color: #feb528;">#</span><span style="color: #febe28;">#</span><span style="color: #fec132;">#</span><span style="color: 
+
+#ffc236;">#</span><span style="color: #f9be32;">#</span><span style="color: #ffca38;">#</span><span style="color: #fcc534;">#</span><span style="color: 
+
+#996303;">#</span><span style="color: #a86328;">#</span><span style="color: #a35d07;">#</span><span style="color: #9e560c;">#</span><span style="color: 
+
+#985409;">#</span><span style="color: #965209;">#</span><span style="color: #924e05;">#</span><span style="color: #8c4800;">#</span><span style="color: 
+
+#8f5003;">#</span><span style="color: #93520e;">#</span><span style="color: #854307;">#</span><span style="color: #85470c;">#</span><span style="color: 
+
+#fccd27;">#</span><span style="color: #fecc35;">###</span><span style="color: #ffd52a;">#</span><span style="color: #ffd740;">#</span><span style="color: 
+
+#67645f;">#</span><span style="color: #f6f6f8;">#</span><span style="color: #f4f4f2;">#</span><span style="color: #ffffff;">###</span><span style="color: 
+
+#515151;">#</span><span style="color: #6d6d6d;">#</span><span style="color: #5f5f5f;">#</span><span style="color: #505050;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #f8f8f8;">#</span><span style="color: 
+
+#f2f5ec;">#</span><span style="color: #787468;">#</span><span style="color: #ffd43d;">#</span><span style="color: #ffc331;">#</span><span style="color: 
+
+#fdc02a;">#</span><span style="color: #f6b525;">#</span><span style="color: #fca520;">#</span><span style="color: #f5951d;">#</span><span style="color: 
+
+#dfdfdf;">#</span><span style="color: #f9f9f9;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #f5faf4;">#</span><span style="color: #eef5ed;">#</span><span style="color: #dca153;">#</span><span style="color: 
+
+#f4a01c;">#</span><span style="color: #ffb72a;">#</span><span style="color: #ffc02a;">#</span><span style="color: #ffc132;">#</span><span style="color: 
+
+#ffc136;">#</span><span style="color: #ffc639;">#</span><span style="color: #f8c130;">#</span><span style="color: #d19d2f;">#</span><span style="color: 
+
+#b87117;">#</span><span style="color: #b57313;">#</span><span style="color: #b3711d;">#</span><span style="color: #ac691a;">#</span><span style="color: 
+
+#955d0a;">#</span><span style="color: #8e5101;">#</span><span style="color: #935606;">#</span><span style="color: #9a5d0d;">#</span><span style="color: 
+
+#a15d14;">#</span><span style="color: #ab6817;">#</span><span style="color: #a9680e;">#</span><span style="color: #a0620b;">#</span><span style="color: 
+
+#d19d30;">#</span><span style="color: #ffcc35;">###</span><span style="color: #f5c63a;">#</span><span style="color: #ffcc3d;">#</span><span style="color: 
+
+#564903;">#</span><span style="color: #fcfbff;">#</span><span style="color: #f8f9f4;">#</span><span style="color: #f7f7f7;">#</span><span style="color: 
+
+#fefefe;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">#</span><span style="color: #e5e5e5;">##</span><span style="color: 
+
+#ffffff;">##</span><span style="color: #fefefe;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #f8f8f8;">#</span><span style="color: 
+
+#f9fff1;">#</span><span style="color: #453e0a;">#</span><span style="color: #ffc24e;">#</span><span style="color: #ffc331;">#</span><span style="color: 
+
+#fdc02a;">#</span><span style="color: #f9b522;">#</span><span style="color: #ffa425;">#</span><span style="color: #f99614;">#</span><span style="color: 
+
+#d8d8d8;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffdff;">#</span><span style="color: #fffaf6;">#</span><span style="color: #d5a05e;">#</span><span style="color: 
+
+#f69d1b;">#</span><span style="color: #feb729;">#</span><span style="color: #fcc129;">#</span><span style="color: #ffc132;">#</span><span style="color: 
+
+#ffc136;">#</span><span style="color: #ffc437;">#</span><span style="color: #f8c22c;">#</span><span style="color: #d29e2e;">#</span><span style="color: 
+
+#9b620b;">#</span><span style="color: #bf9821;">#</span><span style="color: #dec336;">#</span><span style="color: #f8d847;">#</span><span style="color: 
+
+#fee042;">#</span><span style="color: #fddf41;">##</span><span style="color: #fcde40;">#</span><span style="color: #ffe141;">#</span><span style="color: 
+
+#e7c13a;">#</span><span style="color: #bb911b;">#</span><span style="color: #98670a;">#</span><span style="color: #e5bb35;">#</span><span style="color: 
+
+#ffcc35;">###</span><span style="color: #ffcb35;">#</span><span style="color: #fbd036;">#</span><span style="color: #f6d337;">#</span><span style="color: 
+
+#d0c8d7;">#</span><span style="color: #fcffff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #fefefe;">#####</span><span style="color: #f8f9f1;">#</span><span style="color: #f6f5fb;">#</span><span style="color: 
+
+#fdfef8;">#</span><span style="color: #e0e0ec;">#</span><span style="color: #f5de54;">#</span><span style="color: #f8ba2b;">#</span><span style="color: 
+
+#ffc132;">#</span><span style="color: #fec12a;">#</span><span style="color: #fbb91c;">#</span><span style="color: #faa517;">#</span><span style="color: 
+
+#fb9b10;">#</span><span style="color: #e0e0e0;">#</span><span style="color: #f1f1f1;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fffbf9;">#</span><span style="color: #fcf8f5;">#</span><span style="color: #d8ac6f;">#</span><span style="color: 
+
+#f69d1b;">#</span><span style="color: #feb729;">#</span><span style="color: #fcc129;">#</span><span style="color: #fec132;">#</span><span style="color: 
+
+#ffc236;">#</span><span style="color: #fcc135;">#</span><span style="color: #fac12c;">#</span><span style="color: #ffcd37;">#</span><span style="color: 
+
+#f4cb23;">#</span><span style="color: #fbc932;">#</span><span style="color: #fcc439;">#</span><span style="color: #ffcc36;">#</span><span style="color: 
+
+#ffcc3c;">#</span><span style="color: #ffca34;">#</span><span style="color: #ffcb35;">#</span><span style="color: #ffcc36;">#</span><span style="color: 
+
+#ffcd41;">#</span><span style="color: #fcd03c;">#</span><span style="color: #f5d039;">#</span><span style="color: #fcd437;">#</span><span style="color: 
+
+#ffc838;">#</span><span style="color: #fecc35;">###</span><span style="color: #fecb34;">#</span><span style="color: #fccd35;">#</span><span style="color: 
+
+#fccf36;">#</span><span style="color: #91890d;">#</span><span style="color: #ecf0f3;">#</span><span style="color: #fcfcfc;">##</span><span style="color: 
+
+#fefefe;">######</span><span style="color: #fffdff;">#</span><span style="color: #f7fae9;">#</span><span style="color: #fffdff;">#</span><span style="color: 
+
+#817624;">#</span><span style="color: #f7c92d;">#</span><span style="color: #ffc549;">#</span><span style="color: #fec132;">#</span><span style="color: 
+
+#fdc22a;">#</span><span style="color: #f9bc16;">#</span><span style="color: #fea317;">#</span><span style="color: #f19d21;">#</span><span style="color: 
+
+#dddddd;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #fdfdfd;">#
+</span><span style="color: #fff5f3;">#</span><span style="color: #f9f8f6;">#</span><span style="color: #dcb57e;">#</span><span style="color: 
+
+#f69d1b;">#</span><span style="color: #feb729;">#</span><span style="color: #fcc129;">#</span><span style="color: #ffc132;">#</span><span style="color: 
+
+#ffc136;">#</span><span style="color: #ffc835;">#</span><span style="color: #fbc034;">#</span><span style="color: #ffc437;">#</span><span style="color: 
+
+#ffcb27;">#</span><span style="color: #fdc938;">#</span><span style="color: #fac845;">#</span><span style="color: #fec72f;">#</span><span style="color: 
+
+#fac328;">#</span><span style="color: #fcc42f;">###</span><span style="color: #f8c836;">#</span><span style="color: #ffc639;">#</span><span style="color: 
+
+#ffc63e;">#</span><span style="color: #fbc831;">#</span><span style="color: #ffd436;">#</span><span style="color: #ffcc35;">###</span><span style="color: 
+
+#fcca33;">#</span><span style="color: #fecb34;">#</span><span style="color: #ffcb35;">#</span><span style="color: #fad24f;">#</span><span style="color: 
+
+#3b3417;">#</span><span style="color: #fbfbfb;">##</span><span style="color: #fdfdfd;">#</span><span style="color: #fefefe;">#####</span><span style="color: 
+
+#f9f4ff;">#</span><span style="color: #fbfaff;">#</span><span style="color: #363f0a;">#</span><span style="color: #ffe849;">#</span><span style="color: 
+
+#ffbf2b;">#</span><span style="color: #f5c825;">#</span><span style="color: #ffc132;">#</span><span style="color: #fec12a;">#</span><span style="color: 
+
+#f6be13;">#</span><span style="color: #ffa117;">#</span><span style="color: #eb9d30;">#</span><span style="color: #dadada;">#</span><span style="color: 
+
+#f9f9f9;">#</span><span style="color: #f8f8f8;">#
+</span><span style="color: #fffdfa;">#</span><span style="color: #fffaf7;">#</span><span style="color: #f0d8d6;">#</span><span style="color: 
+
+#f79f19;">#</span><span style="color: #fbb228;">#</span><span style="color: #fec329;">#</span><span style="color: #fec02f;">#</span><span style="color: 
+
+#fec031;">#</span><span style="color: #fdc334;">##</span><span style="color: #ffc536;">#</span><span style="color: #fec434;">#</span><span style="color: 
+
+#ffc535;">#</span><span style="color: #ffc636;">#</span><span style="color: #fec635;">##</span><span style="color: #ffc736;">###</span><span style="color: 
+
+#ffc837;">###</span><span style="color: #fec832;">#</span><span style="color: #ffca34;">####</span><span style="color: #ffc938;">###</span><span 
+
+style="color: #ffcf4a;">#</span><span style="color: #ffe629;">#</span><span style="color: #9e9548;">#</span><span style="color: #918495;">#</span><span 
+
+style="color: #ecf5f4;">#</span><span style="color: #fff7ff;">#</span><span style="color: #fffeff;">#</span><span style="color: #fbf9ea;">#</span><span 
+
+style="color: #fbfff6;">#</span><span style="color: #fefeff;">#</span><span style="color: #8b7f8d;">#</span><span style="color: #9b922b;">#</span><span 
+
+style="color: #fcd828;">#</span><span style="color: #fdc635;">#</span><span style="color: #fec434;">#</span><span style="color: #ffc233;">#</span><span 
+
+style="color: #ffc130;">#</span><span style="color: #ffbe2a;">#</span><span style="color: #f6b02c;">#</span><span style="color: #fc9e20;">#</span><span 
+
+style="color: #d7861a;">#</span><span style="color: #dfdfdf;">#</span><span style="color: #fafafa;">#</span><span style="color: #fcfcfc;">#
+</span><span style="color: #fff8ff;">#</span><span style="color: #fff8ff;">#</span><span style="color: #f8f7fc;">#</span><span style="color: 
+
+#f79b16;">#</span><span style="color: #fbad25;">#</span><span style="color: #febf26;">#</span><span style="color: #fec02f;">#</span><span style="color: 
+
+#fec031;">#</span><span style="color: #fdc334;">##</span><span style="color: #ffc536;">#</span><span style="color: #fec434;">#</span><span style="color: 
+
+#ffc535;">#</span><span style="color: #ffc636;">#</span><span style="color: #fec635;">##</span><span style="color: #ffc736;">###</span><span style="color: 
+
+#ffc837;">###</span><span style="color: #fec832;">#</span><span style="color: #ffca34;">####</span><span style="color: #ffc938;">###</span><span 
+
+style="color: #fec834;">#</span><span style="color: #fdc43f;">#</span><span style="color: #ffd340;">#</span><span style="color: #ffea35;">#</span><span 
+
+style="color: #b8ae32;">#</span><span style="color: #4f4719;">#</span><span style="color: #372e2f;">#</span><span style="color: #3e3b42;">#</span><span 
+
+style="color: #4b4002;">#</span><span style="color: #bfb32d;">#</span><span style="color: #ffed3d;">#</span><span style="color: #ffd146;">#</span><span 
+
+style="color: #ffd333;">#</span><span style="color: #fec434;">#</span><span style="color: #ffc233;">#</span><span style="color: #ffc032;">#</span><span 
+
+style="color: #fec02f;">#</span><span style="color: #febc28;">#</span><span style="color: #efb621;">#</span><span style="color: #ee9f29;">#</span><span 
+
+style="color: #cda490;">#</span><span style="color: #e2e2e2;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fdfdfd;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #f1f1f1;">#</span><span style="color: 
+
+#ffa422;">#</span><span style="color: #f3a016;">#</span><span style="color: #fbbe27;">#</span><span style="color: #fec12b;">#</span><span style="color: 
+
+#ffc332;">#</span><span style="color: #febf32;">#</span><span style="color: #ffc033;">#</span><span style="color: #ffc134;">#</span><span style="color: 
+
+#ffc631;">#</span><span style="color: #fbc33a;">#</span><span style="color: #fec93d;">#</span><span style="color: #fdc743;">#</span><span style="color: 
+
+#fbc53f;">#</span><span style="color: #fec434;">#</span><span style="color: #fec435;">#</span><span style="color: #fec339;">#</span><span style="color: 
+
+#ffc732;">###</span><span style="color: #ffc933;">##########</span><span style="color: #ffc837;">###</span><span style="color: #fcd12d;">#</span><span 
+
+style="color: #ffd336;">#</span><span style="color: #ffd439;">#</span><span style="color: #ffcd38;">#</span><span style="color: #fbc83b;">#</span><span 
+
+style="color: #ffc444;">#</span><span style="color: #ffc428;">#</span><span style="color: #fdc42f;">#</span><span style="color: #ffc134;">###</span><span 
+
+style="color: #ffc22c;">#</span><span style="color: #ffbc29;">#</span><span style="color: #f6af21;">#</span><span style="color: #f99700;">#</span><span 
+
+style="color: #dbbeec;">#</span><span style="color: #e9e9e9;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #fefefe;">#</span><span style="color: #fefefe;">#</span><span style="color: #f2f2f2;">#</span><span style="color: 
+
+#d2964d;">#</span><span style="color: #f9a61c;">#</span><span style="color: #fcb421;">#</span><span style="color: #fcc02a;">#</span><span style="color: 
+
+#ffc331;">#</span><span style="color: #fdc032;">#</span><span style="color: #fec133;">#</span><span style="color: #ffc234;">#</span><span style="color: 
+
+#fcba32;">#</span><span style="color: #ffc621;">#</span><span style="color: #fec432;">#</span><span style="color: #ffc438;">#</span><span style="color: 
+
+#ffc43a;">#</span><span style="color: #fdc733;">#</span><span style="color: #ffc933;">#</span><span style="color: #ffca32;">#</span><span style="color: 
+
+#ffc933;">#############</span><span style="color: #ffc935;">###</span><span style="color: #ffc73c;">#</span><span style="color: #fec536;">#</span><span 
+
+style="color: #fdc532;">#</span><span style="color: #ffc540;">#</span><span style="color: #f9bf39;">#</span><span style="color: #f6c21e;">#</span><span 
+
+style="color: #fbc13b;">#</span><span style="color: #fbc132;">#</span><span style="color: #fec133;">###</span><span style="color: #ffc22c;">#</span><span 
+
+style="color: #feb825;">#</span><span style="color: #fba41f;">#</span><span style="color: #f59b2b;">#</span><span style="color: #dbdae0;">#</span><span 
+
+style="color: #eeeeee;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #f3f3f3;">#</span><span style="color: 
+
+#e3e7e8;">#</span><span style="color: #fca821;">#</span><span style="color: #ffac1d;">#</span><span style="color: #fcbf29;">#</span><span style="color: 
+
+#ffc130;">#</span><span style="color: #febf32;">#</span><span style="color: #ffc033;">#</span><span style="color: #ffc134;">#</span><span style="color: 
+
+#f3bb34;">#</span><span style="color: #9a5b18;">#</span><span style="color: #b37a23;">#</span><span style="color: #d6a033;">#</span><span style="color: 
+
+#edbb34;">#</span><span style="color: #fec947;">#</span><span style="color: #feca40;">#</span><span style="color: #fecc37;">#</span><span style="color: 
+
+#fdcb34;">###</span><span style="color: #ffc933;">##########</span><span style="color: #ffc837;">###</span><span style="color: #ffcc3b;">#</span><span 
+
+style="color: #f8c341;">#</span><span style="color: #f3bd43;">#</span><span style="color: #d4a030;">#</span><span style="color: #a66f12;">#</span><span 
+
+style="color: #9c6515;">#</span><span style="color: #f7c238;">#</span><span style="color: #fdc12d;">#</span><span style="color: #ffc134;">###</span><span 
+
+style="color: #ffc22c;">#</span><span style="color: #f9b320;">#</span><span style="color: #f4a52e;">#</span><span style="color: #d2932a;">#</span><span 
+
+style="color: #d6ddd6;">#</span><span style="color: #f4f4f4;">#</span><span style="color: #ffffff;">#</span><span style="color: #fdfdfd;">#
+</span><span style="color: #ffffff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#e2ebf2;">#</span><span style="color: #f29b0e;">#</span><span style="color: #f9b015;">#</span><span style="color: #febc28;">#</span><span style="color: 
+
+#fec22e;">#</span><span style="color: #febf32;">#</span><span style="color: #ffc033;">#</span><span style="color: #ffc134;">#</span><span style="color: 
+
+#b1791a;">#</span><span style="color: #6d310f;">#</span><span style="color: #662104;">#</span><span style="color: #682805;">##</span><span style="color: 
+
+#622300;">#</span><span style="color: #622500;">#</span><span style="color: #622700;">#</span><span style="color: #6c2e00;">#</span><span style="color: 
+
+#763500;">#</span><span style="color: #804408;">#</span><span style="color: #916013;">#</span><span style="color: #9e6f17;">#</span><span style="color: 
+
+#b3831d;">#</span><span style="color: #b98923;">#</span><span style="color: #bd8c26;">#</span><span style="color: #b3861f;">#</span><span style="color: 
+
+#aa7d16;">#</span><span style="color: #a3760f;">#</span><span style="color: #9b6618;">#</span><span style="color: #88530f;">#</span><span style="color: 
+
+#7d3703;">#</span><span style="color: #6d3100;">#</span><span style="color: #662800;">#</span><span style="color: #692900;">#</span><span style="color: 
+
+#6a2805;">#</span><span style="color: #6b280d;">#</span><span style="color: #6a2806;">#</span><span style="color: #6e2c0a;">#</span><span style="color: 
+
+#6d3212;">#</span><span style="color: #e3ae3e;">#</span><span style="color: #ffc82c;">#</span><span style="color: #febf34;">#</span><span style="color: 
+
+#febf32;">#</span><span style="color: #fec02f;">#</span><span style="color: #fdbc2a;">#</span><span style="color: #f9ab23;">#</span><span style="color: 
+
+#ff952a;">#</span><span style="color: #d3c0b2;">#</span><span style="color: #e5e8d7;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">#
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#fbf2ff;">#</span><span style="color: #d1b5a0;">#</span><span style="color: #ffa533;">#</span><span style="color: #fbb426;">#</span><span style="color: 
+
+#fec12a;">#</span><span style="color: #fdc032;">#</span><span style="color: #fec133;">#</span><span style="color: #ffc234;">#</span><span style="color: 
+
+#e5b13b;">#</span><span style="color: #642900;">#</span><span style="color: #773310;">#</span><span style="color: #702d03;">##</span><span style="color: 
+
+#6c2d01;">#</span><span style="color: #6d2e05;">#</span><span style="color: #6f2f0c;">#</span><span style="color: #703300;">#</span><span style="color: 
+
+#6e3500;">#</span><span style="color: #703300;">#</span><span style="color: #703203;">#</span><span style="color: #703200;">#</span><span style="color: 
+
+#722e09;">#</span><span style="color: #6d2c06;">#</span><span style="color: #6f2f09;">#</span><span style="color: #70320b;">#</span><span style="color: 
+
+#6d2f08;">#</span><span style="color: #6a2c05;">#</span><span style="color: #703300;">#</span><span style="color: #732f00;">#</span><span style="color: 
+
+#613200;">#</span><span style="color: #743001;">#</span><span style="color: #743603;">#</span><span style="color: #6c2c00;">#</span><span style="color: 
+
+#6b2a02;">##</span><span style="color: #723107;">#</span><span style="color: #713006;">#</span><span style="color: #622802;">#</span><span style="color: 
+
+#ffd73f;">#</span><span style="color: #fec135;">#</span><span style="color: #fdc032;">#</span><span style="color: #fdc12f;">#</span><span style="color: 
+
+#fdc12b;">#</span><span style="color: #fab720;">#</span><span style="color: #f6a323;">#</span><span style="color: #f39704;">#</span><span style="color: 
+
+#c3dcd6;">#</span><span style="color: #f4eef8;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #ffffff;">##
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#f1ffd5;">#</span><span style="color: #f1eace;">#</span><span style="color: #ff8d00;">#</span><span style="color: #f9ad23;">#</span><span style="color: 
+
+#ffbf27;">#</span><span style="color: #febf32;">#</span><span style="color: #ffc033;">#</span><span style="color: #ffc134;">#</span><span style="color: 
+
+#facb33;">#</span><span style="color: #703800;">#</span><span style="color: #753400;">#</span><span style="color: #7c3809;">##</span><span style="color: 
+
+#79360b;">#</span><span style="color: #793609;">#</span><span style="color: #793703;">#</span><span style="color: #9c3919;">#</span><span style="color: 
+
+#ff3841;">#</span><span style="color: #ef4d4b;">#</span><span style="color: #f7413d;">#</span><span style="color: #fc4645;">#</span><span style="color: 
+
+#fe4553;">#</span><span style="color: #ed4c52;">#</span><span style="color: #9e1a16;">#</span><span style="color: #ee3c48;">#</span><span style="color: 
+
+#ef3d49;">#</span><span style="color: #f03e4a;">#</span><span style="color: #f44041;">#</span><span style="color: #fb3d3f;">#</span><span style="color: 
+
+#ff3e3e;">#</span><span style="color: #96370b;">#</span><span style="color: #733900;">#</span><span style="color: #75340a;">#</span><span style="color: 
+
+#76360a;">#</span><span style="color: #773709;">#</span><span style="color: #793909;">#</span><span style="color: #743404;">#</span><span style="color: 
+
+#d2a727;">#</span><span style="color: #edbf21;">#</span><span style="color: #ffc236;">#</span><span style="color: #fec02f;">#</span><span style="color: 
+
+#fec12b;">#</span><span style="color: #fec12a;">#</span><span style="color: #f9b025;">#</span><span style="color: #f4a117;">#</span><span style="color: 
+
+#a5b1ad;">#</span><span style="color: #ded0dd;">#</span><span style="color: #f3f5f0;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#ffffff;">##
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##</span><span style="color: #fffffd;">#</span><span style="color: 
+
+#f0eff7;">#</span><span style="color: #dec6a2;">#</span><span style="color: #ffa13a;">#</span><span style="color: #f5bc27;">#</span><span style="color: 
+
+#fdbf2c;">#</span><span style="color: #ffc130;">#</span><span style="color: #ffc235;">#</span><span style="color: #fabd2e;">#</span><span style="color: 
+
+#fcd049;">#</span><span style="color: #6c3300;">#</span><span style="color: #83420c;">#</span><span style="color: #844407;">#</span><span style="color: 
+
+#824109;">###</span><span style="color: #993c1a;">#</span><span style="color: #fa4558;">#</span><span style="color: #f5445e;">#</span><span style="color: 
+
+#f4495b;">##</span><span style="color: #f74459;">#</span><span style="color: #fd4a5d;">#</span><span style="color: #6e2e15;">#</span><span style="color: 
+
+#f74a5d;">#</span><span style="color: #f6495c;">#</span><span style="color: #f5485b;">###</span><span style="color: #eb4a5c;">#</span><span style="color: 
+
+#814310;">#</span><span style="color: #7d4105;">#</span><span style="color: #834009;">###</span><span style="color: #853f1d;">#</span><span style="color: 
+
+#a87812;">#</span><span style="color: #ffcd3a;">#</span><span style="color: #ffc736;">#</span><span style="color: #fec031;">#</span><span style="color: 
+
+#febf32;">#</span><span style="color: #ffc12e;">#</span><span style="color: #f7ba21;">#</span><span style="color: #f8a52b;">#</span><span style="color: 
+
+#e0a30c;">#</span><span style="color: #d3d3d3;">#</span><span style="color: #eaeaea;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#ffffff;">###
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##</span><span style="color: #fffeff;">#</span><span style="color: 
+
+#eff1ec;">#</span><span style="color: #dfddf5;">#</span><span style="color: #dda20a;">#</span><span style="color: #ffb21e;">#</span><span style="color: 
+
+#fcbe2b;">#</span><span style="color: #fdbf2e;">#</span><span style="color: #ffc033;">#</span><span style="color: #ffc233;">#</span><span style="color: 
+
+#fac231;">#</span><span style="color: #f3ce38;">#</span><span style="color: #764000;">#</span><span style="color: #925214;">#</span><span style="color: 
+
+#8d4c0c;">###</span><span style="color: #a0471d;">#</span><span style="color: #fb4e6c;">#</span><span style="color: #f45269;">#</span><span style="color: 
+
+#f8516b;">##</span><span style="color: #f5516c;">#</span><span style="color: #fe546f;">#</span><span style="color: #753529;">#</span><span style="color: 
+
+#f8546d;">#</span><span style="color: #f7536c;">#</span><span style="color: #f6526b;">###</span><span style="color: #ee5571;">#</span><span style="color: 
+
+#875111;">#</span><span style="color: #8a4a0a;">#</span><span style="color: #904a0c;">###</span><span style="color: #8f5c0d;">#</span><span style="color: 
+
+#ffd83c;">#</span><span style="color: #fec132;">##</span><span style="color: #ffc233;">#</span><span style="color: #fdc12d;">#</span><span style="color: 
+
+#fdbb29;">#</span><span style="color: #f5ad1d;">#</span><span style="color: #ec9812;">#</span><span style="color: #d9c8e8;">#</span><span style="color: 
+
+#e7e7e7;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">###
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#f6f6f6;">#</span><span style="color: #d8eaf4;">#</span><span style="color: #ff9c0f;">#</span><span style="color: #fdb141;">#</span><span style="color: 
+
+#ffc725;">#</span><span style="color: #f7b82b;">#</span><span style="color: #ffc233;">#</span><span style="color: #ffc237;">#</span><span style="color: 
+
+#ffc23a;">#</span><span style="color: #eec142;">#</span><span style="color: #7f3e08;">#</span><span style="color: #9c5807;">#</span><span style="color: 
+
+#8a4600;">#</span><span style="color: #a15b15;">#</span><span style="color: #ac5415;">#</span><span style="color: #f85a73;">#</span><span style="color: 
+
+#f8516d;">#</span><span style="color: #f65b7b;">#</span><span style="color: #f7607f;">#</span><span style="color: #f85c81;">#</span><span style="color: 
+
+#f76886;">#</span><span style="color: #8a3b40;">#</span><span style="color: #fa6583;">#</span><span style="color: #fa6180;">#</span><span style="color: 
+
+#f85d7d;">#</span><span style="color: #f7597c;">#</span><span style="color: #f6567a;">#</span><span style="color: #ff4c8b;">#</span><span style="color: 
+
+#a05409;">#</span><span style="color: #975910;">#</span><span style="color: #944f04;">#</span><span style="color: #9d5a13;">#</span><span style="color: 
+
+#86490a;">#</span><span style="color: #fcd33d;">#</span><span style="color: #fac231;">#</span><span style="color: #fdc638;">#</span><span style="color: 
+
+#fcc433;">#</span><span style="color: #fdc12f;">#</span><span style="color: #febf22;">#</span><span style="color: #fcb424;">#</span><span style="color: 
+
+#f89c4f;">#</span><span style="color: #c7b37e;">#</span><span style="color: #e5cfe6;">#</span><span style="color: #f6f6f6;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #ffffff;">####
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fbfbfb;">#</span><span style="color: #e6ddd8;">#</span><span style="color: #e6cf9d;">#</span><span style="color: #f6a704;">#</span><span style="color: 
+
+#feab31;">#</span><span style="color: #ffc62a;">#</span><span style="color: #fec22e;">#</span><span style="color: #ffc233;">#</span><span style="color: 
+
+#ffc337;">#</span><span style="color: #f5c322;">#</span><span style="color: #f1cb3c;">#</span><span style="color: #7c4100;">#</span><span style="color: 
+
+#a05f1d;">#</span><span style="color: #a96416;">#</span><span style="color: #b05c16;">#</span><span style="color: #f55d74;">#</span><span style="color: 
+
+#f75d79;">#</span><span style="color: #f8668a;">#</span><span style="color: #fa6d8f;">#</span><span style="color: #f96d92;">#</span><span style="color: 
+
+#fa7796;">#</span><span style="color: #904951;">#</span><span style="color: #fa7393;">#</span><span style="color: #fa6f90;">#</span><span style="color: 
+
+#f96c8e;">#</span><span style="color: #f86486;">#</span><span style="color: #f65c80;">#</span><span style="color: #f64f83;">#</span><span style="color: 
+
+#a0590b;">#</span><span style="color: #a25a12;">#</span><span style="color: #965710;">#</span><span style="color: #af7f1d;">#</span><span style="color: 
+
+#fcdf39;">#</span><span style="color: #f7c530;">#</span><span style="color: #ffc937;">#</span><span style="color: #fcc433;">#</span><span style="color: 
+
+#fdc12f;">#</span><span style="color: #febe29;">#</span><span style="color: #fdba2e;">#</span><span style="color: #fda118;">#</span><span style="color: 
+
+#eca10a;">#</span><span style="color: #c7d2cc;">#</span><span style="color: #eae3db;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">####
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#ffffff;">##</span><span style="color: #fffbfd;">#</span><span style="color: #dee3e7;">#</span><span style="color: #ebaa6a;">#</span><span style="color: 
+
+#f8ae0f;">#</span><span style="color: #f8b529;">#</span><span style="color: #fec12b;">#</span><span style="color: #ffc12e;">#</span><span style="color: 
+
+#ffc233;">#</span><span style="color: #ffbd34;">#</span><span style="color: #f5bd2c;">#</span><span style="color: #f9da41;">#</span><span style="color: 
+
+#9e6c09;">#</span><span style="color: #a56116;">#</span><span style="color: #b8661c;">#</span><span style="color: #f16178;">#</span><span style="color: 
+
+#fa6a8b;">#</span><span style="color: #fb779e;">#</span><span style="color: #fe7da3;">#</span><span style="color: #fa82a6;">#</span><span style="color: 
+
+#fe8bac;">#</span><span style="color: #995a65;">#</span><span style="color: #fc86a8;">#</span><span style="color: #fb82a5;">#</span><span style="color: 
+
+#fb7fa3;">#</span><span style="color: #f87595;">#</span><span style="color: #f7658a;">#</span><span style="color: #ff5c91;">#</span><span style="color: 
+
+#b16d1a;">#</span><span style="color: #8c5101;">#</span><span style="color: #dfb93e;">#</span><span style="color: #f6c928;">#</span><span style="color: 
+
+#fbc036;">#</span><span style="color: #ffc536;">#</span><span style="color: #fdbf30;">#</span><span style="color: #fcc02e;">#</span><span style="color: 
+
+#febe29;">#</span><span style="color: #fcbb23;">#</span><span style="color: #fba51c;">#</span><span style="color: #f0a935;">#</span><span style="color: 
+
+#c4c5d9;">#</span><span style="color: #e3d7e5;">#</span><span style="color: #f2f8ee;">#</span><span style="color: #ffffff;">##</span><span style="color: 
+
+#fefefe;">#</span><span style="color: #ffffff;">###
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#####</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#f2f2f2;">#</span><span style="color: #dbe5dd;">#</span><span style="color: #e9ae62;">#</span><span style="color: #fca732;">#</span><span style="color: 
+
+#f8b42d;">#</span><span style="color: #ffc024;">#</span><span style="color: #fac038;">#</span><span style="color: #ffc132;">#</span><span style="color: 
+
+#ffc136;">#</span><span style="color: #ffc93c;">#</span><span style="color: #ffd33b;">#</span><span style="color: #dbb538;">#</span><span style="color: 
+
+#915f0a;">#</span><span style="color: #ef6f86;">#</span><span style="color: #f87e97;">#</span><span style="color: #f985aa;">#</span><span style="color: 
+
+#fc8fb6;">#</span><span style="color: #ff94bc;">#</span><span style="color: #ff99be;">#</span><span style="color: #bd6484;">#</span><span style="color: 
+
+#ff92b9;">#</span><span style="color: #fd8fb2;">#</span><span style="color: #fd8bad;">#</span><span style="color: #f986a7;">#</span><span style="color: 
+
+#f57294;">#</span><span style="color: #ff5c8a;">#</span><span style="color: #a67d25;">#</span><span style="color: #fed643;">#</span><span style="color: 
+
+#facb37;">#</span><span style="color: #ffc535;">#</span><span style="color: #ffc335;">#</span><span style="color: #fbc131;">#</span><span style="color: 
+
+#ffc233;">#</span><span style="color: #fcc125;">#</span><span style="color: #ffb62f;">#</span><span style="color: #f9ad23;">#</span><span style="color: 
+
+#f2a023;">#</span><span style="color: #cdcab9;">#</span><span style="color: #e1d6dc;">#</span><span style="color: #f3f3f3;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">######
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">######</span><span style="color: #fafafa;">#</span><span style="color: 
+
+#f1fde5;">#</span><span style="color: #dfeec5;">#</span><span style="color: #e7b570;">#</span><span style="color: #fcaa09;">#</span><span style="color: 
+
+#fabd2f;">#</span><span style="color: #ffbe22;">#</span><span style="color: #fdc12d;">#</span><span style="color: #fec132;">#</span><span style="color: 
+
+#f9ba2f;">#</span><span style="color: #ffca35;">#</span><span style="color: #f6c42f;">#</span><span style="color: #d5b232;">#</span><span style="color: 
+
+#ed7e8e;">#</span><span style="color: #ec869c;">#</span><span style="color: #f994b4;">#</span><span style="color: #fc9ec0;">#</span><span style="color: 
+
+#ffa3c8;">#</span><span style="color: #fca2c6;">#</span><span style="color: #ce7a9c;">#</span><span style="color: #fda1c6;">#</span><span style="color: 
+
+#fd9ec0;">#</span><span style="color: #fe9abc;">#</span><span style="color: #f88fad;">#</span><span style="color: #f57c9b;">#</span><span style="color: 
+
+#f3608c;">#</span><span style="color: #dbb31e;">#</span><span style="color: #f8c432;">#</span><span style="color: #fec432;">#</span><span style="color: 
+
+#ffc331;">#</span><span style="color: #ffc130;">#</span><span style="color: #fec02d;">#</span><span style="color: #febc2a;">#</span><span style="color: 
+
+#fdb52d;">#</span><span style="color: #fda80d;">#</span><span style="color: #f0a937;">#</span><span style="color: #ccc9b8;">#</span><span style="color: 
+
+#e3d1df;">#</span><span style="color: #daf5ee;">#</span><span style="color: #fafafa;">#</span><span style="color: #ffffff;">#######
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#######</span><span style="color: #fffcfd;">#</span><span style="color: 
+
+#eff1ec;">#</span><span style="color: #d3e2cf;">#</span><span style="color: #e4bb7b;">#</span><span style="color: #fc9d1b;">#</span><span style="color: 
+
+#f2b711;">#</span><span style="color: #fdc02a;">#</span><span style="color: #fec02f;">#</span><span style="color: #faba25;">#</span><span style="color: 
+
+#ffc43c;">#</span><span style="color: #fdba37;">#</span><span style="color: #cda029;">#</span><span style="color: #fa88a2;">#</span><span style="color: 
+
+#f994a2;">#</span><span style="color: #faa0bc;">#</span><span style="color: #fdaac8;">#</span><span style="color: #ffadd1;">#</span><span style="color: 
+
+#f9a9cc;">#</span><span style="color: #dc8caf;">#</span><span style="color: #feacd0;">#</span><span style="color: #fea8cb;">#</span><span style="color: 
+
+#fca5c5;">#</span><span style="color: #f797b2;">#</span><span style="color: #f584a0;">#</span><span style="color: #f36e8b;">#</span><span style="color: 
+
+#dcaa31;">#</span><span style="color: #f7b932;">#</span><span style="color: #ffc032;">#</span><span style="color: #fec031;">#</span><span style="color: 
+
+#fcbf30;">#</span><span style="color: #ffbf2b;">#</span><span style="color: #fbb724;">#</span><span style="color: #fea547;">#</span><span style="color: 
+
+#eca829;">#</span><span style="color: #c5c1d2;">#</span><span style="color: #e0d5db;">#</span><span style="color: #d8f3ec;">#</span><span style="color: 
+
+#ffeff6;">#</span><span style="color: #ffffff;">########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">########</span><span style="color: #fafafa;">#</span><span style="color: 
+
+#f2f2f2;">#</span><span style="color: #e5e3d4;">#</span><span style="color: #d5cfd3;">#</span><span style="color: #eea309;">#</span><span style="color: 
+
+#f8a233;">#</span><span style="color: #f2b816;">#</span><span style="color: #ffbf2d;">#</span><span style="color: #ffc52b;">#</span><span style="color: 
+
+#f5bd2c;">#</span><span style="color: #dca733;">#</span><span style="color: #ff6b9b;">#</span><span style="color: #fb8bb3;">#</span><span style="color: 
+
+#faa0b9;">#</span><span style="color: #ffb1cb;">#</span><span style="color: #fdb7d3;">#</span><span style="color: #ffb9d5;">#</span><span style="color: 
+
+#f5afcb;">#</span><span style="color: #ffb8d5;">#</span><span style="color: #feb2ce;">#</span><span style="color: #fcaec6;">#</span><span style="color: 
+
+#f397b0;">#</span><span style="color: #f6819b;">#</span><span style="color: #f65780;">#</span><span style="color: #d8af21;">#</span><span style="color: 
+
+#ffbe30;">#</span><span style="color: #ffc12e;">#</span><span style="color: #ffbd2b;">#</span><span style="color: #fdb928;">#</span><span style="color: 
+
+#f8a636;">#</span><span style="color: #f8a52b;">#</span><span style="color: #d6b194;">#</span><span style="color: #d4cbd0;">#</span><span style="color: 
+
+#e0e5df;">#</span><span style="color: #f2f2f2;">#</span><span style="color: #fafafa;">#</span><span style="color: #ffffff;">#########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#########</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#f3fbfe;">#</span><span style="color: #ede7eb;">#</span><span style="color: #d0dde5;">#</span><span style="color: #e4be8d;">#</span><span style="color: 
+
+#ffb10e;">#</span><span style="color: #f8b121;">#</span><span style="color: #fdba23;">#</span><span style="color: #f9b82a;">#</span><span style="color: 
+
+#dda72b;">#</span><span style="color: #f75a85;">#</span><span style="color: #fd7fa4;">#</span><span style="color: #f697ad;">#</span><span style="color: 
+
+#fca6bf;">#</span><span style="color: #f6acc5;">#</span><span style="color: #fbb1ca;">#</span><span style="color: #feb4cd;">#</span><span style="color: 
+
+#ffafca;">#</span><span style="color: #fda9c3;">#</span><span style="color: #faa5bc;">#</span><span style="color: #f088a1;">#</span><span style="color: 
+
+#f3738c;">#</span><span style="color: #ee4d6e;">#</span><span style="color: #dcaf1e;">#</span><span style="color: #fab52a;">#</span><span style="color: 
+
+#fbb424;">#</span><span style="color: #fbb021;">#</span><span style="color: #faad1f;">#</span><span style="color: #e6aa32;">#</span><span style="color: 
+
+#d0c6ba;">#</span><span style="color: #c9d4ce;">#</span><span style="color: #e1e9da;">#</span><span style="color: #f4f1fa;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">##########
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###########</span><span style="color: #fafafa;">#</span><span style="color: 
+
+#f5f5f5;">#</span><span style="color: #e5e5e5;">#</span><span style="color: #d2d2d2;">#</span><span style="color: #dbab56;">#</span><span style="color: 
+
+#ffad22;">#</span><span style="color: #ebaf11;">#</span><span style="color: #c8a620;">#</span><span style="color: #ff4670;">#</span><span style="color: 
+
+#fc708a;">#</span><span style="color: #f6809a;">#</span><span style="color: #fb93aa;">#</span><span style="color: #fc9eb8;">#</span><span style="color: 
+
+#fba1ba;">#</span><span style="color: #faa5bc;">#</span><span style="color: #ffa5be;">#</span><span style="color: #fd9bb4;">#</span><span style="color: 
+
+#fc94ab;">#</span><span style="color: #e28195;">#</span><span style="color: #f45b6f;">#</span><span style="color: #dc4a61;">#</span><span style="color: 
+
+#e6b01a;">#</span><span style="color: #f6a820;">#</span><span style="color: #ffa414;">#</span><span style="color: #dfba38;">#</span><span style="color: 
+
+#c2b2cd;">#</span><span style="color: #cfcfcf;">#</span><span style="color: #e3e3e3;">#</span><span style="color: #f5f5f5;">#</span><span style="color: 
+
+#fafafa;">#</span><span style="color: #ffffff;">############
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###########</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fbfbfb;">#</span><span style="color: #f5f5f5;">#</span><span style="color: #eaeaea;">#</span><span style="color: #eae7d6;">#</span><span style="color: 
+
+#c5c5dd;">#</span><span style="color: #d3be8f;">#</span><span style="color: #d7a431;">#</span><span style="color: #d54e3b;">#</span><span style="color: 
+
+#e3678b;">#</span><span style="color: #ef6b83;">#</span><span style="color: #f27e95;">#</span><span style="color: #f888a1;">#</span><span style="color: 
+
+#f88aa3;">#</span><span style="color: #f88ea5;">#</span><span style="color: #f688a3;">#</span><span style="color: #f47e98;">#</span><span style="color: 
+
+#f2768e;">#</span><span style="color: #f9607f;">#</span><span style="color: #ea4668;">#</span><span style="color: #ca7024;">#</span><span style="color: 
+
+#eeb415;">#</span><span style="color: #beaa87;">#</span><span style="color: #c5c3b4;">#</span><span style="color: #cccedd;">#</span><span style="color: 
+
+#d1dbdd;">#</span><span style="color: #e8e8e8;">#</span><span style="color: #f4f4f4;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">############
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">#############</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #effcff;">#</span><span style="color: #ecf1ed;">#</span><span style="color: #e5dbd9;">#</span><span style="color: 
+
+#c9cbbd;">#</span><span style="color: #a3a8ac;">#</span><span style="color: #ec4271;">#</span><span style="color: #f14865;">#</span><span style="color: 
+
+#f45b77;">#</span><span style="color: #f36885;">#</span><span style="color: #f46b87;">#</span><span style="color: #f36e89;">#</span><span style="color: 
+
+#f36a86;">#</span><span style="color: #f1617c;">#</span><span style="color: #ef5974;">#</span><span style="color: #f33f62;">#</span><span style="color: 
+
+#cd636f;">#</span><span style="color: #a5aca4;">#</span><span style="color: #bdc6c1;">#</span><span style="color: #d5ccdd;">#</span><span style="color: 
+
+#e7e6e1;">#</span><span style="color: #ececec;">#</span><span style="color: #f0f3e8;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#fdfdfd;">#</span><span style="color: #ffffff;">##############
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">################</span><span style="color: #fcfcfc;">#</span><span style="color: 
+
+#f6f6f6;">#</span><span style="color: #e9e9e9;">#</span><span style="color: #cbcbcb;">#</span><span style="color: #acacac;">#</span><span style="color: 
+
+#d46578;">#</span><span style="color: #f53157;">#</span><span style="color: #f63d5d;">#</span><span style="color: #f54260;">#</span><span style="color: 
+
+#f24863;">#</span><span style="color: #e45364;">#</span><span style="color: #e9435b;">#</span><span style="color: #f7405e;">#</span><span style="color: 
+
+#c57180;">#</span><span style="color: #adadab;">#</span><span style="color: #cfcfcf;">#</span><span style="color: #e2e2e2;">#</span><span style="color: 
+
+#f0f0f0;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#ffffff;">################
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">################</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#fcfcfc;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #eaeaea;">#</span><span style="color: #d5d5d5;">#</span><span style="color: 
+
+#c7bebf;">#</span><span style="color: #b7a9a9;">#</span><span style="color: #ce727f;">#</span><span style="color: #d56679;">#</span><span style="color: 
+
+#dd5772;">#</span><span style="color: #c96b7b;">#</span><span style="color: #b09398;">#</span><span style="color: #a7bab8;">#</span><span style="color: 
+
+#babdc2;">#</span><span style="color: #d6dad9;">#</span><span style="color: #f2f2f2;">#</span><span style="color: #fefefe;">#</span><span style="color: 
+
+#ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">##################
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###############</span><span style="color: #fdfdfd;">#</span><span style="color: 
+
+#ffffff;">###</span><span style="color: #fdfdfd;">#</span><span style="color: #f1f1f1;">#</span><span style="color: #e5dfdf;">#</span><span style="color: 
+
+#d4ced0;">#</span><span style="color: #c6b9c2;">#</span><span style="color: #beb9bf;">#</span><span style="color: #b2bcbd;">#</span><span style="color: 
+
+#b9b9b7;">#</span><span style="color: #bec5bd;">#</span><span style="color: #cbd9ca;">#</span><span style="color: #dfe2db;">#</span><span style="color: 
+
+#f7f7f7;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #ffffff;">#</span><span style="color: #fbfbfb;">#</span><span style="color: 
+
+#ffffff;">###################
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##################</span><span style="color: #fefefe;">#</span><span 
+
+style="color: #fdfdfd;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #ededed;">#</span><span 
+
+style="color: #e7e7e7;">#</span><span style="color: #e6e6e6;">#</span><span style="color: #e3e3e3;">#</span><span style="color: #e5e5e5;">#</span><span 
+
+style="color: #ededed;">#</span><span style="color: #f3f3f3;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #fefefe;">#</span><span 
+
+style="color: #ffffff;">######################
+</span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###################</span><span style="color: #fefefe;">##</span><span 
+
+style="color: #ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fafafa;">#</span><span style="color: #f9f9f9;">#</span><span 
+
+style="color: #f7f7f7;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fdfdfd;">#</span><span 
+
+style="color: #ffffff;">########################
+</span></pre>
+<div><input type="button" id="nuevos" value="Nuevo juego" onClick="Nuevo(genero);" />
+     <input type="button" name="salir" id="salir" class="" value="Me rindo" style="width:105px" onClick="window.close();" /><br>
+</div>
 </div>
 
 <span id="pap">  </span>
