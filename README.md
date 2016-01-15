@@ -1,2 +1,2 @@
 # Bloques
-Un solo color en 25 intentos
+Varios intentos, un solo color.
