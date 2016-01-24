@@ -27,11 +27,13 @@ lista = [];
 conec = [];
 genero = "";
 nombre = "";
-var logoR = ['22', '27', '32', '33', '36', '37', '54'];
+var logoR = ['22', '27', '32', '33', '36', '37', '54', '55'];
 var logoM = ['34', '35', '53', '56', '73', '86'];
 
 	function Mosaico() {
 		var elemento =  document.getElementsByTagName("td");
+		for ( a=0; a<99; a++ ) {
+			document.getElementsByTagName('td')[a].className="purpura"; }
 		for ( a=0; a<10; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura";  }
 		for ( a=10; a<91; a += 10 ) {
@@ -39,6 +41,8 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 		for ( a=9; a<100; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
 		for ( a=90; a<100; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=12; a<18; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
 		for ( a=23; a<27; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
@@ -50,8 +54,10 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 			document.getElementsByTagName("td")[a].className="purpura"; }
 		for ( a=0; a<6; a++ ) {
 			document.getElementsByTagName("td")[logoM[a]].className="purpura"; }
-		for ( a=0; a<7; a++ ) {
+		for ( a=0; a<8; a++ ) {
 			document.getElementsByTagName("td")[logoR[a]].className="rosa"; }
+		for ( a=43; a<47; a++ ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
 		for ( a=11; a<82; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="rosa"; }
 		for ( a=18; a<89; a += 10 ) {
@@ -69,26 +75,46 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 	}
 
 	function Historia(quees) {
-		nombre = prompt("Por favor, escribe tu nombre.", "Maximo 13 caracteres");
-		nombre = nombre.toUpperCase();
-		if ( nombre.length > 13 ) { Historia(quees); return false; }
+		quees = genero;
+		if ( document.getElementById('historia').value != "Historia" ) { return false; }
+
+		if ( genero == "" ) { 
+			if ( confirm("Si eres: \nHombre --> presiona CONFIRMAR. \nMujer --> presiona CANCELAR") == true ) { genero = "hombre"; 
+				}
+				else { genero = "mujer"; }
+		quees = genero;
+		//nombre = prompt("Escribe tu nombre de Usuario", "Kaliman");
+		//}
+		if ( nombre == "" || nombre == null ) {
+			nombre = prompt("Por favor, escribe tu nombre o alias.", "Maximo 13 caracteres");
+			nombre = nombre.toUpperCase();
+		}
+		if ( nombre.length > 13 ) { nombre=""; Historia(genero); return false; }
 		if ( nombre == null || nombre == "" || nombre == " " || nombre == "  " || nombre == "   " || nombre == "    " || nombre == "     " || nombre == "      " || nombre == "       " || nombre == "        " || nombre == "         " || nombre == "          " || nombre == "           " || nombre == "            " || nombre == "             " ) {
-			 Historia(quees); return false; }
-		if ( quees == "hombre" ) { 
+			 Historia(genero); return false; }
+		}
+		if ( quees == "hombre" && nombre != "" && nombre != null  ) { 
 			genero = "hombre";
 			amo = "Señor";
 			if ( document.getElementById("sini").checked == true ) { 
 			alert("En tierras lejanas del oriente, hay un reino que durante mucho tiempo ha estado sumido en la pobreza, bajo la tirania de sus opresores.");
 			alert("Sin embargo, no siempre fue asi. Hace unos siglos fue un reino lleno de abundancia, de prosperidad y armonia");
 			alert("Los viejos, cuentan de una profecia que no muchos creen: ");
-			alert("'Un hombre, un desconocido proveniente de tierras distantes, de apariencia herculea y de vigor inagotable, hara la diferencia. \nResolvera la tabla de los enigmas. Y liberara las arcas del tesoro ancestral, para despues tomar posesion del trono'");
-				if ( confirm("¿Seras tu, ese Caballero?") ) {
-					alert("Ya lo veremos, " +nombre+ "."); Nuevo(genero); return true;  }
-				alert("Eso crei... Lastima de cuerpo :D");  }
+			alert("'Un hombre, un desconocido proveniente de tierras distantes, de apariencia herculea y de vigor inagotable, cambiara todo. \nResolvera la tabla de los enigmas. Y liberara las arcas del tesoro ancestral, para despues tomar posesion del trono'");
+				if ( confirm("¿Seras tu, ese Caballero?") == true ) {
+					alert("Ya lo veremos, " +nombre+ ".\nAqui empieza tu primer desafio!"); Nuevo(genero); }
+				
+				else { alert("Eso crei... Lastima de cuerpo :D");
+				document.getElementById('historia').value = "Fin";
+				document.getElementById('nuevo').value = "Juego Cancelado";
+				document.getElementById('nuevo').style.backgroundColor = "red";
+				document.getElementById('nuevo').style.color = "#ffffff";
+				limpiezaTotal();
+				Mosaico(); } }
 		}
-		if ( document.getElementById("sini").checked == false ) { alert("¿¿¿Por que sin historia??? \n¿No te gustan los cuentos?"); Nuevo(); } 
+		if ( document.getElementById("sini").checked == false ) { alert("¿¿¿Por que sin historia??? \n¿No te gustan los cuentos?"); Nuevo(genero); } 
 	
-		if ( quees == "mujer" ) {
+		if ( quees == "mujer" && nombre != "" && nombre != null ) {
 				genero = "mujer";
 				amo = "Señora";
 			if ( document.getElementById("sini").checked == true ) {
@@ -96,25 +122,35 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 				alert("Este prospero lugar, era la envidia de muchos reinos circunvecinos. \nTanto, que en numerosas ocasiones fue blanco de ataques y estratagemas malintencionadas para arruinarlo.");
 				alert("En efecto, la prosperidad y armonia que en un tiempo fueron el orgullo del reino, un dia sucumbieron.");
 				alert("Al tiempo que su gloria cayo, en el reino empezo a correr el rumor de una profecia que dice que: \n\n'Un dia, una viajera proveniente de tierras lejanas, de astucia incomparable y de habilidades excepcionales, llegara al reino y sera la artifice de su restauracion; al devolverle la gloria que en otro tiempo perdio. \nDespues de lo cual, tomara posesion del trono a beneplacito de todos los subditos'.");
-				if ( confirm("¿Seras tu, aquella? \n\nAceptar: Para si. \nCancelar: Para no.") ) {
-					alert( "Ya lo veremos "  + nombre + "."); 
-					Nuevo(genero); 
-					return true; }
-				alert("Eso pense... \nDesde un principio, no me lo pareciste " +nombre+ ".");
-			}
+				if ( confirm("¿Seras tu, aquella? \n\nAceptar: Para si. \nCancelar: Para no.") == true ) {
+					alert( "Ya lo veremos "  + nombre + ". \nAqui tienes una sencilla prueba..."); 
+					Nuevo(genero); }
+				else { alert("Eso pense... \nDesde un principio, no me lo pareciste... " +nombre+ ".");
+				document.getElementById('historia').value = "Fin";
+				document.getElementById('nuevo').value = "Juego Cancelado";
+				document.getElementById('nuevo').style.backgroundColor = "red";
+				document.getElementById('nuevo').style.color = "#ffffff";
+				limpiezaTotal();
+				Mosaico(); } }
 		}
 		} 
 		
 function Nuevo(eloella) {
 
 		if ( document.getElementById('nuevo').value != "Nuevo Juego" ) { return false; }
-
+		document.bgColor="#3399cc";
 		if ( genero == "" ) { 
 			if ( confirm("Si eres: \nHombre --> presiona CONFIRMAR. \nMujer --> presiona CANCELAR") == true ) { genero = "hombre"; 
 				}
 				else { genero = "mujer"; }
 		eloella = genero;
-		nombre = prompt("Escribe tu nombre de Usuario", "Kaliman");
+		nombre = prompt("Escribe tu nombre o alias", "Superman");
+		}
+
+		if ( nombre == "" || nombre == null ) {
+			nombre = prompt("Por favor, escribe tu nombre.", "Maximo 13 caracteres");
+			nombre = nombre.toUpperCase();
+		if ( nombre.length > 13 ) { nombre=""; Nuevo(genero); return false; }
 		}
 
 	document.getElementById('imagen').style.display="none";
@@ -124,14 +160,15 @@ function Nuevo(eloella) {
 	if (  eloella == "hombre" ) { amo = "Señor"; }
 		
 	tiros=24;
-	i=0; n=0; ok=1; nivel=5; lista=[];
+	i=0; n=0; ok=1; nivel=0; lista=[];
 	Revuelve(); 
 		document.getElementById('jugador').value = nombre;
-		document.getElementById('nuevo').value = "Juego Iniciado";
+		document.getElementById('nuevo').value = "Reto Iniciado";
 		document.getElementById('jug').style.display= "block";
 		document.getElementById('nivel').value = "Nivel: " + nivel;
 		document.getElementById('score').value = "Intentos: " + tiros;
-		
+		if ( amo == "Señor" ) {	document.getElementById('jug').innerHTML = "Valiente"; }
+		if ( amo == "Lady" ) {	document.getElementById('jug').innerHTML = "Hermosa"; }
 	}
 
 	function Revuelve() {
@@ -262,7 +299,11 @@ function Nuevo(eloella) {
 	}
 
 	function limpieza() {
-		i=0; n=0; ok=0; lista=[]; conec=[];
+		i=0; n=0; ok=0; lista=[]; conec=[]; 
+	}
+
+	function limpiezaTotal() {
+		i=0; n=0; ok=0; lista=[]; conec=[]; tiros=0;
 	}
 
 	function Comprueba(){
@@ -275,13 +316,17 @@ function Nuevo(eloella) {
 
 function Ayuda(ayu){
 	if ( ayu.value == "Ayuda" ) {
-		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas de la tabla; partiendo de la primera celda de la esquina superior izquierda y afectando a todas las que esten junto a ella y sean de su mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido.";
+		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas de la tabla; partiendo de la primera celda de la esquina superior izquierda y afectando a todas las que esten junto a ella y sean de su mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido. \n\nNota: Se han omitido todos los acentos en los textos, para mejor compatibilidad.";
 		alert(insts); }
 	if ( ayu.name == "jugador" ) { 
 		if ( ayu.value == "-----" ) { return 0; }
 					alert("Aqui se muestra el nombre del Jugador activo en este momento. \n\t" +amo+ " " + nombre); return 0; }
-	if ( ayu.name == "nivel" ) { alert("Este es el nivel actual en el que estas."); return 0; }
-	if ( ayu.name == "score" ) { alert("El numero de movimientos que te quedan en el juego."); return 0; }
+	if ( ayu.name == "nivel" ) { 
+		if ( ayu.value == "Nivel" ) { return false; }
+			alert("Este es el nivel actual en el que estas."); return 0; }
+	if ( ayu.name == "score" ) { 
+		if ( ayu.value == "Intentos" ) { return false; }
+			alert("El numero de movimientos que te quedan en el juego."); return 0; }
 	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); return 0; }
 	}
 	
@@ -327,16 +372,23 @@ function Ayuda(ayu){
 
 
 function playSound() {
-	var soundfile = "res/pap.mp3";
-	var soundfile2 = "res/pap.wav";
+	var soundfile = "res/raw/pap.mp3";
+	var soundfile2 = "res/raw/pap.wav";
+	var soundfile3 = "res/raw/pap.ogg";
+
   document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
   document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile2+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+  document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile3+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
 }
+
+	function Cerrar() {
+	navigator.app.exitApp();
+	}
 
 //--></script>
 </head>
 <body bgcolor="#3399cc" align="center" onLoad="Mosaico()"><center>
-<div id="caja" style="width:267px; background-color:brown; display: block" ><center>
+<div id="caja" style="width:280px; background-color:brown; display: block" ><center>
 <table bgcolor="#000000" width="150" height="180" autostart="true" align="left">
 
 	<tr>
@@ -382,16 +434,17 @@ function playSound() {
 	</tr>
 	</table>
 
-<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="115" height="180">
+<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="130" height="180">
 	<tr>
 		<td colspan="10" bgcolor="teal" align="center" valign="center" height="20">
-			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:105px" onClick="Nuevo('noasignado')" />
+			<input type="button" name="historia" id="historia" class="" value="Historia" style="width:115px" onClick="Historia()" />
+			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:115px" onClick="Nuevo('noasignado')" />
 			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div><b>
-			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:105px" onClick="Ayuda(this)" /></b>
-			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:105px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="score" id="score" class="" value="Intentos" style="width:105px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:105px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:105px" onClick="window.close();" /><br>
+			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:115px" onClick="Ayuda(this)" /></b>
+			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:115px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="score" id="score" class="" value="Intentos" style="width:115px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:115px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:115px" onClick="window.close();" /><br>
 	</tr></table>
 </center></div><p>
 <div id="inicio" align="center" style="width:300px; height:200px; background-color:brown; display: none">
@@ -461,7 +514,7 @@ function playSound() {
 </span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###################</span><span style="color: #fefefe;">##</span><span style="color: #ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fafafa;">#</span><span style="color: #f9f9f9;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">########################
 </span></pre>
 <div><input type="button" id="nuevos" value="Nuevo juego" onClick="Nuevo(genero)" />
-     <input type="button" name="salir" id="salir" value="Me rindo" style="width: 105px" onClick="window.close()" /><br>
+     <input type="button" name="salir" id="salir" value="Me rindo" style="width: 105px" onClick="Cerrar()" /><br>
 </div>
 </div>
 
