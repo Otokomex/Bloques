@@ -1,17 +1,18 @@
 ﻿<html>
 <head><title>Bloques</title> 
 <style type="text/css">
-input {background-color: #3399cc; border-color: #3399cc}
+input {background-color: navy; color: silver; border-style: none;}
 input.man {background-color: #3399cc; border-color: #3399cc}
 input.mina {background-color: #ff00ff; border-color: #ff00ff}
-input:hover {background-color: #aaffaa; border-color: #ff00ff}
+input:hover {background-color: #aaffaa; border-color: #ff00ff; color: navy}
 td {color: #ffffff}
 td.purpura {background-color: purple}
 td.verde {background-color: green}
 td.plata {background-color: silver}
 td.anaranjado {background-color: orange}
-td.fuccia {background-color: #ff00ff}
-#jugador {background-color: #3399cc; border-color: #3399cc; font-size: larger; color: red;}
+td.rosa {background-color: #ff00ff}
+#jugador {background-color: navy; border-color: #3399cc; color: yellow}
+#jugador:hover {background-color: #aaffaa; border-color: #ff00ff; color: navy}
 </style>
 
 <script language="javascript">
@@ -26,8 +27,50 @@ lista = [];
 conec = [];
 genero = "";
 nombre = "";
+var logoR = ['22', '27', '32', '33', '36', '37', '54'];
+var logoM = ['34', '35', '53', '56', '73', '86'];
+
+	function Mosaico() {
+		var elemento =  document.getElementsByTagName("td");
+		for ( a=0; a<10; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura";  }
+		for ( a=10; a<91; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=9; a<100; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=90; a<100; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=23; a<27; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=42; a<83; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=63; a<67; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=47; a<88; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+		for ( a=0; a<6; a++ ) {
+			document.getElementsByTagName("td")[logoM[a]].className="purpura"; }
+		for ( a=0; a<7; a++ ) {
+			document.getElementsByTagName("td")[logoR[a]].className="rosa"; }
+		for ( a=11; a<82; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
+		for ( a=18; a<89; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
+		elemento[74].className="verde";
+		elemento[83].className="verde";
+		elemento[92].className="verde";
+		elemento[75].className="plata";
+		elemento[84].className="plata";
+		elemento[93].className="plata";
+		elemento[76].className="anaranjado";
+		elemento[85].className="anaranjado";
+		elemento[94].className="anaranjado";
+		
+	}
+
 	function Historia(quees) {
 		nombre = prompt("Por favor, escribe tu nombre.", "Maximo 13 caracteres");
+		nombre = nombre.toUpperCase();
 		if ( nombre.length > 13 ) { Historia(quees); return false; }
 		if ( nombre == null || nombre == "" || nombre == " " || nombre == "  " || nombre == "   " || nombre == "    " || nombre == "     " || nombre == "      " || nombre == "       " || nombre == "        " || nombre == "         " || nombre == "          " || nombre == "           " || nombre == "            " || nombre == "             " ) {
 			 Historia(quees); return false; }
@@ -63,28 +106,32 @@ nombre = "";
 		} 
 		
 function Nuevo(eloella) {
-		if ( genero == "" ) { 
-			pregunta = prompt("Eres hombre o mujer?", "mujer");
-			minusculas= pregunta.toLowerCase();
-			genero = minusculas; alert(genero); }
-	document.getElementById('imagen').style.display="none";
-	document.getElementById('inicio').style.display="none";
-	document.getElementById('caja').style.display="block";
-	if (  eloella == "mujer" ) { amo = "Señora"; }
-	if (  eloella == "hombre" ) { amo = "Señor"; }
 
+		if ( document.getElementById('nuevo').value != "Nuevo Juego" ) { return false; }
+
+		if ( genero == "" ) { 
+			if ( confirm("Si eres: \nHombre --> presiona CONFIRMAR. \nMujer --> presiona CANCELAR") == true ) { genero = "hombre"; 
+				}
+				else { genero = "mujer"; }
+		eloella = genero;
+		nombre = prompt("Escribe tu nombre de Usuario", "Kaliman");
+		}
+
+	document.getElementById('imagen').style.display="none";
+	document.getElementById('caja').style.display="block";
+
+	if (  eloella == "mujer" ) { amo = "Lady"; }
+	if (  eloella == "hombre" ) { amo = "Señor"; }
+		
 	tiros=24;
-	i=0; n=0; ok=1; nivel=0; lista=[];
+	i=0; n=0; ok=1; nivel=5; lista=[];
 	Revuelve(); 
-	//if ( document.getElementById('jug').style.display == "none" ) {
-			//nombre = prompt("¡Vamos a empezar! \nEscribe tu nombre: ", "O apodo, si quieres", "Titulo");
 		document.getElementById('jugador').value = nombre;
-		document.getElementById('nuevo').disabled = true;
-			//document.getElementById('jug').style.visibility= "visible";
+		document.getElementById('nuevo').value = "Juego Iniciado";
 		document.getElementById('jug').style.display= "block";
 		document.getElementById('nivel').value = "Nivel: " + nivel;
 		document.getElementById('score').value = "Intentos: " + tiros;
-		//}
+		
 	}
 
 	function Revuelve() {
@@ -101,8 +148,7 @@ function Nuevo(eloella) {
 			if ( aleatorio == 4 ) {
 				document.getElementsByTagName("td")[x].className = "anaranjado"; }
 			if ( aleatorio == 5 ) {
-				document.getElementsByTagName("td")[x].className = "fuccia"; }
-		//alert(aleatorio);
+				document.getElementsByTagName("td")[x].className = "rosa"; }
 		}
 		x=0; 
 	}
@@ -110,72 +156,17 @@ function Nuevo(eloella) {
 	function Cuales(nuevoColor) {
 		playSound();
 		color_cambiar = document.getElementsByTagName("td")[0].className;
-		if (color_cambiar == nuevoColor ) { alert("\tUsa otro color. \nEl color " +nuevoColor+ " es el que tienes que cambiar"); return 0; }
-		if ( tiros == 0 ) { alert("Debes iniciar un juego nuevo"); return 0; }
+		if (color_cambiar == nuevoColor ) { //alert("\tUsa otro color. \nEl color " +nuevoColor+ " es el que tienes que cambiar"); 
+			return 0; }
+		if ( tiros == 0 ) { //alert("Debes iniciar un juego nuevo"); 
+			return 0; }
 		if ( tiros > 0 ) { tiros = tiros - 1; }
 		ok=1;
 		document.getElementById('score').value = "Intentos: " + tiros;
-		//lista = [];
-		//conec = [];
 		lista[0] = 0;
 		conec[0] = "ok";
 
 
-/*		for ( i=1; i<99; i++) {
-			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
-				if ( i==0 ) {
-					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>0  && i<9 ) {
-					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==9 ) {
-					if ( conec[i-1] =="ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>10  && i<19 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>20  && i<29 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>30  && i<39 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>40  && i<49 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>50  && i<59 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>60  && i<69 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>70  && i<79 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>80  && i<89 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==90) {
-					if ( conec[i-10] == "ok" || conec[i+1] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>90  && i<99 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] == "ok" || conec[i+1] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==99 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 ) {
-					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; ok++; } }
-				if ( i==19 || i==29 || i==39 || i==49 || i==59 || i==69 || i==79 || i==89 ) {
-					if ( conec[i-10] =="ok" || conec[i-1] == "ok" || conec[i+10] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; ok++; } }
-
-			if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no"; }
-			}
-		}
-*/
 		for ( i=1; i<100; i++) {
 			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
 				if ( i==0 ) {
@@ -235,9 +226,7 @@ function Nuevo(eloella) {
 		for ( n=0; n<100; n++ ) {
 			if ( conec[n] == "ok" ) { document.getElementsByTagName("td")[n].className = nuevoColor; }
 		}
-		//alert(conec);
-		//Comprueba();
-		//alert(ok);
+
 		if ( ok > 99 ) { 
 			alert("¡Ganaste!"); 
 			limpieza(); 
@@ -254,7 +243,7 @@ function Nuevo(eloella) {
 		if ( tiros < 1 ) {
 				junta = conec.toString();
 				esta = junta.indexOf("ok");
-				//alert(esta);
+
 				if ( esta >= 0 ) { alert("\t\t¡Loooooooooooser!"); 
 					if ( nivel == 0) { alert("Creo que mejor deberias buscar algun reto de 'tu nivel'"); }
 					if ( nivel == 1) { alert("¡Lo sabia! \nHay muchos retadores como tu, pululando por ahi. \nTrata cuando quieras."); }
@@ -264,6 +253,7 @@ function Nuevo(eloella) {
 					if ( nivel == 5) { alert("¡A los impostores, los castigamos con la muerte!"); 
 							alert("Pero no te preocupes, hoy te ganaste mi respeto al llegar hasta aqui. \nSigue tu camino."); }
 					document.getElementById('caja').style.display = "none";
+					document.getElementById('nuevo').value = "Nuevo Juego";
 					document.getElementById('imagen').style.display = "block";
 					document.bgColor="#ffffff";
 				}
@@ -280,18 +270,19 @@ function Nuevo(eloella) {
 				if ( document.getElementsByTagName("td")[z].className == color_cambiar ) { cuenta++; 
 				if ( cuenta == 100 ) { 
 					alert("¡Victoriaaaaaaaa!"); }
-				//alert("¡Que loser! \n\nNo puedes ni con un jueguito."); break; } }
 		}	}	}
 	
 
 function Ayuda(ayu){
 	if ( ayu.value == "Ayuda" ) {
-		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas la tabla; partiendo del primer cuadro de la esquina superior izquierda y afectando a todos los cuadros que esten junto a el y sean del mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido.";
+		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas de la tabla; partiendo de la primera celda de la esquina superior izquierda y afectando a todas las que esten junto a ella y sean de su mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido.";
 		alert(insts); }
-	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); }
-	if ( ayu.name == "nivel" ) { alert("Este es el nivel actual en el que estas."); }
-	if ( ayu.name == "score" ) { alert("El numero de movimientos que te quedan en el juego."); }
-	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); }
+	if ( ayu.name == "jugador" ) { 
+		if ( ayu.value == "-----" ) { return 0; }
+					alert("Aqui se muestra el nombre del Jugador activo en este momento. \n\t" +amo+ " " + nombre); return 0; }
+	if ( ayu.name == "nivel" ) { alert("Este es el nivel actual en el que estas."); return 0; }
+	if ( ayu.name == "score" ) { alert("El numero de movimientos que te quedan en el juego."); return 0; }
+	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); return 0; }
 	}
 	
 	function NuevoNivel(n_nivel, n_tiros) {
@@ -321,29 +312,31 @@ function Ayuda(ayu){
 					document.getElementById('score').value = "Intentos: " + n_tiros;
 		}
 		if ( n_nivel == "6" ) { alert("No puedo creer lo que mis ojos estan viendo...");
-					alert("¡La profecia era cierta! ¡Majestad, eres tu! \n¡Ven, " +amo+ "! \nDebo presentarte ante el pueblo.");
+					alert("¡La profecia era cierta! ¡Majestad, eres Tu! \n¡Ven, mi " +amo+ "! \nDebo presentarte ante tu pueblo.");
 					nombre_bien = nombre.toUpperCase();
-					alert(nombre_bien + " completo los desafios satisfactoriamente y con creces.");
-					alert("Despues de eso, como decia la profecia, tomo posesion del trono y asi del reino. \nAsi empezo el resurgimiento de la prosperidad y gloria del \n\n\t\t*** Reino de " + nombre_bien + " ***");
+					alert(nombre_bien + " resolvio los desafios satisfactoriamente y con creces.");
+					alert("Despues de eso, cumpliendo con la profecia, tomo posesion del trono y asi del reino. \nAsi empezo el resurgimiento de la prosperidad y gloria del \n\n\t\t*** Reino de " + nombre_bien + " ***");
 					document.getElementById('nuevo').value = "Reto terminado";
-					document.getElementById('nuevo').disabled = false;
 					document.getElementById('jug').innerHTML = "¡Salve!";
+					document.getElementById('nivel').value = "Gracias por";
+					document.getElementById('score').value = "jugar mi juego";
+					document.getElementById('ayuda').value = "AmigoPue ;)";
 		}		
 
 	}
 
 
 function playSound() {
-	var soundfile = "pap.mp3";
-	var soundfile2 = "pap.wav";
+	var soundfile = "res/pap.mp3";
+	var soundfile2 = "res/pap.wav";
   document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
   document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile2+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
 }
 
 //--></script>
 </head>
-<body bgcolor="#3399cc" align="center"><center>
-<div id="caja" style="width:267px; background-color:brown; display: none" ><center>
+<body bgcolor="#3399cc" align="center" onLoad="Mosaico()"><center>
+<div id="caja" style="width:267px; background-color:brown; display: block" ><center>
 <table bgcolor="#000000" width="150" height="180" autostart="true" align="left">
 
 	<tr>
@@ -360,11 +353,11 @@ function playSound() {
 		<td class="verde"><td class="verde"><td class="verde"><td class="verde">
 		<td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde"> <td class="verde">
 	<tr>
-		<td class="fuccia"><td class="fuccia"><td class="fuccia"><td class="fuccia"><td class="fuccia"> 
-		<td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia">
+		<td class="rosa"><td class="rosa"><td class="rosa"><td class="rosa"><td class="rosa"> 
+		<td class="rosa"> <td class="rosa"> <td class="rosa"> <td class="rosa"> <td class="rosa">
 	<tr>
-		<td class="fuccia"><td class="fuccia"><td class="fuccia"><td class="fuccia"><td class="fuccia"> 
-		<td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia"> <td class="fuccia">
+		<td class="rosa"><td class="rosa"><td class="rosa"><td class="rosa"><td class="rosa"> 
+		<td class="rosa"> <td class="rosa"> <td class="rosa"> <td class="rosa"> <td class="rosa">
 	<tr>
 		<td class="anaranjado"><td class="anaranjado"><td class="anaranjado"><td class="anaranjado"><td class="anaranjado"> 
 		<td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado"> <td class="anaranjado">
@@ -383,25 +376,25 @@ function playSound() {
 		<td class="verde" onClick="Cuales('verde')" colspan="2" height="30">
 		<td class="purpura"  onClick="Cuales('purpura')" colspan="2">
 		<td class="plata"  onClick="Cuales('plata')" colspan="2">
-		<td class="fuccia"  onClick="Cuales('fuccia')" colspan="2">
+		<td class="rosa"  onClick="Cuales('rosa')" colspan="2">
 		<td class="anaranjado"  onClick="Cuales('anaranjado')" colspan="2">
 
 	</tr>
 	</table>
 
-<table bgcolor="#3399CC" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="115" height="180">
+<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="115" height="180">
 	<tr>
 		<td colspan="10" bgcolor="teal" align="center" valign="center" height="20">
-			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:105px" onClick="Nuevo()" />
-			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div>
-			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:105px" onClick="Ayuda(this)" /><p>
+			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:105px" onClick="Nuevo('noasignado')" />
+			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div><b>
+			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:105px" onClick="Ayuda(this)" /></b>
 			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:105px" onClick="Ayuda(this)" /><br>
 			<input type="button" name="score" id="score" class="" value="Intentos" style="width:105px" onClick="Ayuda(this)" /><br>
 			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:105px" onClick="Ayuda(this)" /><br>
 			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:105px" onClick="window.close();" /><br>
 	</tr></table>
 </center></div><p>
-<div id="inicio" align="center" style="width:300px; height:200px; background-color:brown; display: block">
+<div id="inicio" align="center" style="width:300px; height:200px; background-color:brown; display: none">
 <table width="300" height="200"> <tr><td align="center" valign="center">
 <b>Haz click para iniciar</b><p>
 <input type="button" id="hombre" class="man" value="Soy Hombre" onClick="Historia(this.id)" />
@@ -467,8 +460,8 @@ function playSound() {
 </span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">##################</span><span style="color: #fefefe;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #fcfcfc;">#</span><span style="color: #f6f6f6;">#</span><span style="color: #ededed;">#</span><span style="color: #e7e7e7;">#</span><span style="color: #e6e6e6;">#</span><span style="color: #e3e3e3;">#</span><span style="color: #e5e5e5;">#</span><span style="color: #ededed;">#</span><span style="color: #f3f3f3;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #fefefe;">#</span><span style="color: #ffffff;">######################
 </span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###################</span><span style="color: #fefefe;">##</span><span style="color: #ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fafafa;">#</span><span style="color: #f9f9f9;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">########################
 </span></pre>
-<div><input type="button" id="nuevos" value="Nuevo juego" onClick="Nuevo(genero);" />
-     <input type="button" name="salir" id="salir" class="" value="Me rindo" style="width:105px" onClick="window.close();" /><br>
+<div><input type="button" id="nuevos" value="Nuevo juego" onClick="Nuevo(genero)" />
+     <input type="button" name="salir" id="salir" value="Me rindo" style="width: 105px" onClick="window.close()" /><br>
 </div>
 </div>
 
