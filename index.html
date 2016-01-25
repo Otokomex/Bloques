@@ -166,7 +166,7 @@ function Nuevo(eloella) {
 		document.getElementById('nuevo').value = "Reto Iniciado";
 		document.getElementById('jug').style.display= "block";
 		document.getElementById('nivel').value = "Nivel: " + nivel;
-		document.getElementById('score').value = "Intentos: " + tiros;
+		document.getElementById('score').value = "Movimientos: " + tiros;
 		if ( amo == "Señor" ) {	document.getElementById('jug').innerHTML = "Valiente"; }
 		if ( amo == "Lady" ) {	document.getElementById('jug').innerHTML = "Hermosa"; }
 	}
@@ -199,7 +199,7 @@ function Nuevo(eloella) {
 			return 0; }
 		if ( tiros > 0 ) { tiros = tiros - 1; }
 		ok=1;
-		document.getElementById('score').value = "Intentos: " + tiros;
+		document.getElementById('score').value = "Movimientos: " + tiros;
 		lista[0] = 0;
 		conec[0] = "ok";
 
@@ -316,7 +316,7 @@ function Nuevo(eloella) {
 
 function Ayuda(ayu){
 	if ( ayu.value == "Ayuda" ) {
-		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas de la tabla; partiendo de la primera celda de la esquina superior izquierda y afectando a todas las que esten junto a ella y sean de su mismo color. \n\n4. Solo tienes algunos intentos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido. \n\nNota: Se han omitido todos los acentos en los textos, para mejor compatibilidad.";
+		insts = "Intrucciones: \n\n1. Oprime el boton 'Nuevo Juego' para iniciar. \n\n2. En la tabla de la izquierda veras celdas de distintos colores. El objetivo del juego, es llenar la tabla con un solo color. \n\n3. En la seccion COLORES hay cinco celdas, con sendos colores. Al presionar en cualquiera de ellas, cambiara el color de las celdas de la tabla; partiendo de la primera celda de la esquina superior izquierda y afectando a todas las que esten junto a ella y sean de su mismo color. \n\n4. Solo tienes algunos movimientos disponibles en total para lograrlo. Si las oportunidades se terminan y hay cuadros con colores distintos en la tabla, habras perdido. \n\nNota: Se han omitido todos los acentos en los textos, para mejor compatibilidad.";
 		alert(insts); }
 	if ( ayu.name == "jugador" ) { 
 		if ( ayu.value == "-----" ) { return 0; }
@@ -325,7 +325,7 @@ function Ayuda(ayu){
 		if ( ayu.value == "Nivel" ) { return false; }
 			alert("Este es el nivel actual en el que estas."); return 0; }
 	if ( ayu.name == "score" ) { 
-		if ( ayu.value == "Intentos" ) { return false; }
+		if ( ayu.value == "Movimientos" ) { return false; }
 			alert("El numero de movimientos que te quedan en el juego."); return 0; }
 	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); return 0; }
 	}
@@ -334,27 +334,27 @@ function Ayuda(ayu){
 		if ( n_nivel == "1" ) { alert("Al parecer, no eres lo que aparentas... \nAhora, el siguiente nivel sera igual de facil, pero...");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
-					document.getElementById('score').value = "Intentos: " + n_tiros;
+					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
 		if ( n_nivel == "2" ) { alert("Asuuuuustame panteon. \nOk. Digamos, que te tomare en serio...");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
-					document.getElementById('score').value = "Intentos: " + n_tiros;
+					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
 		if ( n_nivel == "3" ) { alert("Bueno, esto ya no me esta gustando...");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
-					document.getElementById('score').value = "Intentos: " + n_tiros;
+					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
 		if ( n_nivel == "4" ) { alert("Lo reconozco, ¡nadie habia llegado hasta aqui!");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
-					document.getElementById('score').value = "Intentos: " + n_tiros;
+					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
 		if ( n_nivel == "5" ) { alert("¿Sera posible que...?");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
-					document.getElementById('score').value = "Intentos: " + n_tiros;
+					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
 		if ( n_nivel == "6" ) { alert("No puedo creer lo que mis ojos estan viendo...");
 					alert("¡La profecia era cierta! ¡Majestad, eres Tu! \n¡Ven, mi " +amo+ "! \nDebo presentarte ante tu pueblo.");
@@ -382,6 +382,7 @@ function playSound() {
 }
 
 	function Cerrar() {
+	window.close();
 	navigator.app.exitApp();
 	}
 
@@ -434,7 +435,7 @@ function playSound() {
 	</tr>
 	</table>
 
-<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="150" height="180">
+<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="140" height="180" align="right">
 	<tr>
 		<td colspan="10" bgcolor="teal" align="center" valign="center" height="20">
 			<input type="button" name="historia" id="historia" class="" value="Historia" style="width:125px" onClick="Historia()" />
@@ -442,9 +443,9 @@ function playSound() {
 			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div><b>
 			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:125px" onClick="Ayuda(this)" /></b>
 			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:125px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="score" id="score" class="" value="Intentos" style="width:125px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="score" id="score" class="" value="Movimientos" style="width:125px" onClick="Ayuda(this)" /><br>
 			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:125px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:125px" onClick="window.close();" /><br>
+			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:125px" onClick="javascript:window.close()" /><br>
 	</tr></table>
 </center></div><p>
 <div id="inicio" align="center" style="width:300px; height:200px; background-color:brown; display: none">
