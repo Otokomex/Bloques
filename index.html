@@ -5,12 +5,17 @@ input {background-color: navy; color: silver; border-style: none;}
 input.man {background-color: #3399cc; border-color: #3399cc}
 input.mina {background-color: #ff00ff; border-color: #ff00ff}
 input:hover {background-color: #aaffaa; border-color: #ff00ff; color: navy}
-td {color: #ffffff}
+td {color: #ffffff; width: 12; height: 12}
 td.purpura {background-color: purple}
 td.verde {background-color: green}
 td.plata {background-color: silver}
 td.anaranjado {background-color: orange}
 td.rosa {background-color: #ff00ff}
+#ponpurpura {background-color: purple; height: 24}
+#ponverde {background-color: green; height: 24}
+#ponplata {background-color: silver; height: 24}
+#ponanaranjado {background-color: orange; height: 24}
+#ponrosa {background-color: #ff00ff; height: 24}
 #jugador {background-color: navy; border-color: #3399cc; color: yellow}
 #jugador:hover {background-color: #aaffaa; border-color: #ff00ff; color: navy}
 </style>
@@ -21,56 +26,57 @@ td.rosa {background-color: #ff00ff}
 y crear un lista con el identificador de cada una de las celdas que este en la categoria de "conectadas".
 Con esa lista, se asignara un nuevo color general a cada miembro de ella.
 */
-var i=0; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0; nivel=0;
+var i=1; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0; nivel=0;
 tiros = 0; amo="";
 lista = [];
 conec = [];
 genero = "";
 nombre = "";
-var logoR = ['22', '27', '32', '33', '36', '37', '54', '55'];
+var logoR = ['23', '28', '33', '34', '37', '38', '55', '56'];
 var logoM = ['34', '35', '53', '56', '73', '86'];
 
 	function Mosaico() {
 		var elemento =  document.getElementsByTagName("td");
-		for ( a=0; a<99; a++ ) {
-			document.getElementsByTagName('td')[a].className="purpura"; }
-		for ( a=0; a<10; a++ ) {
+		for ( a=1; a<101; a++ ) {
+			document.getElementsByTagName("td")[a].className="purpura"; }
+/*		for ( a=1; a<11; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura";  }
-		for ( a=10; a<91; a += 10 ) {
+		for ( a=11; a<92; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=9; a<100; a += 10 ) {
+		for ( a=10; a<101; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=90; a<100; a++ ) {
+		for ( a=91; a<101; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=12; a<18; a++ ) {
+		for ( a=13; a<19; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=23; a<27; a++ ) {
+		for ( a=24; a<28; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=42; a<83; a += 10 ) {
+		for ( a=43; a<84; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=63; a<67; a++ ) {
+		for ( a=64; a<68; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=47; a<88; a += 10 ) {
+		for ( a=48; a<89; a += 10 ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=0; a<6; a++ ) {
+		for ( a=1; a<7; a++ ) {
 			document.getElementsByTagName("td")[logoM[a]].className="purpura"; }
+*/
+		for ( a=44; a<48; a++ ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
+		for ( a=12; a<83; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
+		for ( a=19; a<90; a += 10 ) {
+			document.getElementsByTagName("td")[a].className="rosa"; }
 		for ( a=0; a<8; a++ ) {
 			document.getElementsByTagName("td")[logoR[a]].className="rosa"; }
-		for ( a=43; a<47; a++ ) {
-			document.getElementsByTagName("td")[a].className="rosa"; }
-		for ( a=11; a<82; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="rosa"; }
-		for ( a=18; a<89; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="rosa"; }
-		elemento[74].className="verde";
-		elemento[83].className="verde";
-		elemento[92].className="verde";
-		elemento[75].className="plata";
-		elemento[84].className="plata";
-		elemento[93].className="plata";
-		elemento[76].className="anaranjado";
-		elemento[85].className="anaranjado";
-		elemento[94].className="anaranjado";
+		elemento[75].className="verde";
+		elemento[84].className="verde";
+		elemento[93].className="verde";
+		elemento[76].className="plata";
+		elemento[85].className="plata";
+		elemento[94].className="plata";
+		elemento[77].className="anaranjado";
+		elemento[86].className="anaranjado";
+		elemento[95].className="anaranjado";
 		
 	}
 
@@ -79,24 +85,37 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 		if ( document.getElementById('historia').value != "Historia" ) { return false; }
 
 		if ( genero == "" ) { 
-			if ( confirm("Si eres: \nHombre --> presiona CONFIRMAR. \nMujer --> presiona CANCELAR") == true ) { genero = "hombre"; 
-				}
-				else { genero = "mujer"; }
+			if ( confirm("Si eres: \nHombre --> pulsa CONFIRMAR. \nMujer --> pulsa CANCELAR") == true ) { 
+				genero = "hombre"; 
+				nombre = prompt("Por favor, escribe tu nombre o alias. \nMaximo 13 caracteres", "Goku SSJ4"); }
+			else { genero = "mujer"; 
+				nombre = prompt("Por favor, escribe tu nombre o alias. \nMaximo 13 caracteres", "Gatubela"); }
 		quees = genero;
-		//nombre = prompt("Escribe tu nombre de Usuario", "Kaliman");
-		//}
+		}
+
+		if ( nombre == " " || nombre == "  " || nombre == "   " || nombre == "    " || nombre == "     " || nombre == "      " || nombre == "       " || nombre == "        " || nombre == "         " || nombre == "          " || nombre == "           " || nombre == "            " || nombre == "             " || nombre.length > 13 ) {
+			nombre = ""; Historia(genero); return false; }
+
 		if ( nombre == "" || nombre == null ) {
-			nombre = prompt("Por favor, escribe tu nombre o alias.", "Maximo 13 caracteres");
+			if ( genero == "hombre" ) {
+				if ((nombre = prompt("Por favor, escribe tu nombre o alias. \nMaximo 13 caracteres", "Goku SSJ4")) == false ) {
+					alert("Canceló"); } }
+			else { nombre = prompt("Por favor, escribe tu nombre o alias. \nMaximo 13 caracteres", "Shayera"); }
+			}
 			nombre = nombre.toUpperCase();
-		}
-		if ( nombre.length > 13 ) { nombre=""; Historia(genero); return false; }
-		if ( nombre == null || nombre == "" || nombre == " " || nombre == "  " || nombre == "   " || nombre == "    " || nombre == "     " || nombre == "      " || nombre == "       " || nombre == "        " || nombre == "         " || nombre == "          " || nombre == "           " || nombre == "            " || nombre == "             " ) {
-			 Historia(genero); return false; }
-		}
-		if ( quees == "hombre" && nombre != "" && nombre != null  ) { 
+			var largo = nombre.length;
+				//alert(largo);
+			if ( nombre.length >= 14 ) {
+				alert(largo);
+				nombre="";
+				Historia(quees);
+				return false; }
+		
+		//}
+		if ( quees == "hombre" && nombre != "" && nombre != null && nombre.length <= 13 ) { 
 			genero = "hombre";
 			amo = "Señor";
-			if ( document.getElementById("sini").checked == true ) { 
+			//if ( document.getElementById("sini").checked == true ) { 
 			alert("En tierras lejanas del oriente, hay un reino que durante mucho tiempo ha estado sumido en la pobreza, bajo la tirania de sus opresores.");
 			alert("Sin embargo, no siempre fue asi. Hace unos siglos fue un reino lleno de abundancia, de prosperidad y armonia");
 			alert("Los viejos, cuentan de una profecia que no muchos creen: ");
@@ -105,19 +124,19 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 					alert("Ya lo veremos, " +nombre+ ".\nAqui empieza tu primer desafio!"); Nuevo(genero); }
 				
 				else { alert("Eso crei... Lastima de cuerpo :D");
-				document.getElementById('historia').value = "Fin";
-				document.getElementById('nuevo').value = "Juego Cancelado";
-				document.getElementById('nuevo').style.backgroundColor = "red";
-				document.getElementById('nuevo').style.color = "#ffffff";
-				limpiezaTotal();
-				Mosaico(); } }
+					document.getElementById('historia').value = "Fin";
+					document.getElementById('nuevo').value = "Juego Cancelado";
+					document.getElementById('nuevo').style.backgroundColor = "red";
+					document.getElementById('nuevo').style.color = "#ffffff";
+					limpiezaTotal();
+					Mosaico(); } //}
 		}
 		if ( document.getElementById("sini").checked == false ) { alert("¿¿¿Por que sin historia??? \n¿No te gustan los cuentos?"); Nuevo(genero); } 
 	
-		if ( quees == "mujer" && nombre != "" && nombre != null ) {
+		if ( quees == "mujer" && nombre != "" && nombre != null  && nombre.length <= 13 ) {
 				genero = "mujer";
 				amo = "Señora";
-			if ( document.getElementById("sini").checked == true ) {
+	//		if ( document.getElementById("sini").checked == true ) {
 				alert("Se cuenta que en los dias de Sherezada, hubo un reino muy prospero llamado: \n\t\tReino de " + nombre);
 				alert("Este prospero lugar, era la envidia de muchos reinos circunvecinos. \nTanto, que en numerosas ocasiones fue blanco de ataques y estratagemas malintencionadas para arruinarlo.");
 				alert("En efecto, la prosperidad y armonia que en un tiempo fueron el orgullo del reino, un dia sucumbieron.");
@@ -131,7 +150,7 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 				document.getElementById('nuevo').style.backgroundColor = "red";
 				document.getElementById('nuevo').style.color = "#ffffff";
 				limpiezaTotal();
-				Mosaico(); } }
+				Mosaico(); } //}
 		}
 		} 
 		
@@ -141,10 +160,12 @@ function Nuevo(eloella) {
 		document.bgColor="#3399cc";
 		if ( genero == "" ) { 
 			if ( confirm("Si eres: \nHombre --> presiona CONFIRMAR. \nMujer --> presiona CANCELAR") == true ) { genero = "hombre"; 
-				}
-				else { genero = "mujer"; }
+				nombre = prompt("Escribe tu nombre o alias", "Superman");
+			}
+			else { genero = "mujer";
+				nombre = prompt("Escribe tu nombre o alias", "Viuda Negra");
+			}
 		eloella = genero;
-		nombre = prompt("Escribe tu nombre o alias", "Superman");
 		}
 
 		if ( nombre == "" || nombre == null ) {
@@ -160,7 +181,7 @@ function Nuevo(eloella) {
 	if (  eloella == "hombre" ) { amo = "Señor"; }
 		
 	tiros=24;
-	i=0; n=0; ok=1; nivel=0; lista=[];
+	i=1; n=0; ok=1; nivel=0; lista=[];
 	Revuelve(); 
 		document.getElementById('jugador').value = nombre;
 		document.getElementById('nuevo').value = "Reto Iniciado";
@@ -172,9 +193,9 @@ function Nuevo(eloella) {
 	}
 
 	function Revuelve() {
-		x=0;
+		x=1;
 		var aleatorio;
-		for ( x=0; x<99; x++) {
+		for ( x=1; x<100; x++) {
 		aleatorio = Math.floor((Math.random() * 5 + 1));
 			if ( aleatorio == 1 ) {
 				document.getElementsByTagName("td")[x].className = "plata"; }
@@ -192,7 +213,7 @@ function Nuevo(eloella) {
 
 	function Cuales(nuevoColor) {
 		playSound();
-		color_cambiar = document.getElementsByTagName("td")[0].className;
+		color_cambiar = document.getElementsByTagName("td")[1].className;
 		if (color_cambiar == nuevoColor ) { //alert("\tUsa otro color. \nEl color " +nuevoColor+ " es el que tienes que cambiar"); 
 			return 0; }
 		if ( tiros == 0 ) { //alert("Debes iniciar un juego nuevo"); 
@@ -200,71 +221,72 @@ function Nuevo(eloella) {
 		if ( tiros > 0 ) { tiros = tiros - 1; }
 		ok=1;
 		document.getElementById('score').value = "Movimientos: " + tiros;
-		lista[0] = 0;
-		conec[0] = "ok";
+		lista[1] = 1;
+		conec[0] = "no";
+		conec[1] = "ok";
 
 
-		for ( i=1; i<100; i++) {
+		for ( i=1; i<=100; i++) {
 			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
-				if ( i==0 ) {
+				if ( i==1 ) {
 					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>0  && i<9 ) {
+				if ( i>1  && i<10 ) {
 					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==9 ) {
+				if ( i==10 ) {
 					if ( conec[i-1] =="ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>10  && i<19 ) {
+				if ( i>11  && i<20 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>20  && i<29 ) {
+				if ( i>21  && i<30 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>30  && i<39 ) {
+				if ( i>31  && i<40 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>40  && i<49 ) {
+				if ( i>41  && i<50 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>50  && i<59 ) {
+				if ( i>51  && i<60 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>60  && i<69 ) {
+				if ( i>61  && i<70 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>70  && i<79 ) {
+				if ( i>71  && i<80 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>80  && i<89 ) {
+				if ( i>81  && i<90 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==90) {
+				if ( i==91) {
 					if ( conec[i-10] == "ok" || conec[i+1] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>90  && i<99 ) {
+				if ( i>91  && i<100 ) {
 					if ( conec[i-10] == "ok" || conec[i-1] == "ok" || conec[i+1] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==99 ) {
-					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
-						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i==10 || i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 ) {
+				if ( i==11 || i==21 || i==31 || i==41 || i==51 || i==61 || i==71 || i==81 ) {
 					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; ok++; } }
-				if ( i==19 || i==29 || i==39 || i==49 || i==59 || i==69 || i==79 || i==89 ) {
+				if ( i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 || i==90 ) {
 					if ( conec[i-10] =="ok" || conec[i-1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; ok++; } }
+				if ( i==100 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
 
 			if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no"; }
 			}
 		}
 
 
-		for ( n=0; n<100; n++ ) {
+		for ( n=0; n<101; n++ ) {
 			if ( conec[n] == "ok" ) { document.getElementsByTagName("td")[n].className = nuevoColor; }
 		}
 
-		if ( ok > 99 ) { 
+		if ( ok >= 100 ) { 
 			alert("¡Ganaste!"); 
 			limpieza(); 
 			nivel++; 
@@ -299,11 +321,11 @@ function Nuevo(eloella) {
 	}
 
 	function limpieza() {
-		i=0; n=0; ok=0; lista=[]; conec=[]; 
+		i=1; n=0; ok=0; lista=[]; conec=[]; 
 	}
 
 	function limpiezaTotal() {
-		i=0; n=0; ok=0; lista=[]; conec=[]; tiros=0;
+		i=1; n=0; ok=0; lista=[]; conec=[]; tiros=0;
 	}
 
 	function Comprueba(){
@@ -322,10 +344,10 @@ function Ayuda(ayu){
 		if ( ayu.value == "-----" ) { return 0; }
 					alert("Aqui se muestra el nombre del Jugador activo en este momento. \n\t" +amo+ " " + nombre); return 0; }
 	if ( ayu.name == "nivel" ) { 
-		if ( ayu.value == "Nivel" ) { return false; }
+		if ( ayu.value == "Nivel" || ayu.value == "Gracias por" ) { return false; }
 			alert("Este es el nivel actual en el que estas."); return 0; }
 	if ( ayu.name == "score" ) { 
-		if ( ayu.value == "Movimientos" ) { return false; }
+		if ( ayu.value == "Movimientos" || ayu.value == "jugar mi juego" ) { return false; }
 			alert("El numero de movimientos que te quedan en el juego."); return 0; }
 	if ( ayu.name == "jugador" ) { alert("Aqui se muestra el nombre del Jugador activo en este momento."); return 0; }
 	}
@@ -361,6 +383,7 @@ function Ayuda(ayu){
 					nombre_bien = nombre.toUpperCase();
 					alert(nombre_bien + " resolvio los desafios satisfactoriamente y con creces.");
 					alert("Despues de eso, cumpliendo con la profecia, tomo posesion del trono y asi del reino. \nAsi empezo el resurgimiento de la prosperidad y gloria del \n\n\t\t*** Reino de " + nombre_bien + " ***");
+					document.getElementById('historia').value = "Tu Historia";
 					document.getElementById('nuevo').value = "Reto terminado";
 					document.getElementById('jug').innerHTML = "¡Salve!";
 					document.getElementById('nivel').value = "Gracias por";
@@ -382,22 +405,32 @@ function playSound() {
 }
 
 	function Cerrar() {
-	window.close();
-	navigator.app.exitApp();
+		navigator.app.exitApp();
 	}
 
 //--></script>
 </head>
-<body bgcolor="#3399cc" align="center" onLoad="Mosaico()"><center>
-<div id="caja" style="width:300px; background-color:brown; display: block" ><center>
-<table bgcolor="#000000" width="150" height="180" autostart="true" align="left">
+<body bgcolor="#3399cc" align="center" onload="Mosaico()"><center>
+<div id="caja" style="width:270; height: 190; background-color:brown; display: block" ><center>
+<table bgcolor="#000000" width="270" height="190" autostart="true" align="left">
 
 	<tr>
+		<td bgcolor="teal" rowspan="12" align="center" valign="center" width="125" height="20">
+			<input type="button" name="historia" id="historia" class="" value="Historia" style="width:125px" onClick="Historia()" />
+			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:125px" onClick="Nuevo('noasignado')" />
+			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div><b>
+<!--			<input type="button" name="jugbtn" id="juga" class="" value="" style="width:125px" /></b> //-->
+			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:125px" onClick="Ayuda(this)" /></b>
+			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:125px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="score" id="score" class="" value="Movimientos" style="width:125px" onClick="Ayuda(this)" /><br>
+			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:125px" onClick="Ayuda(this)" /><br>
+
+		<!--	<input type="button" name="salir" id="salir" class="" value="Salir" style="width:125px" onClick="Cerrar()" /><br> //-->
+
 		<td class="purpura"><td class="purpura"><td class="purpura"><td class="purpura"><td class="purpura"> <td class="purpura">
 		 <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura">
 	<tr>
-		<td class="purpura"><td class="purpura">
-		<td class="purpura"><td class="purpura"><td class="purpura"> 
+		<td class="purpura"><td class="purpura"><td class="purpura"><td class="purpura"><td class="purpura"> 
 		<td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura"> <td class="purpura">
 	<tr>
 		<td class="verde"><td class="verde"><td class="verde"><td class="verde">
@@ -424,30 +457,18 @@ function playSound() {
 		<td class="plata"><td class="plata"><td class="plata"><td class="plata"><td class="plata"> 
 		<td class="plata"> <td class="plata"> <td class="plata"> <td class="plata"> <td class="plata">
 	<tr>
-		<td style="color:#ffffff" colspan="10" align="center" valign="center" height="14">* COLORES *
+		<td id="colores" style="color:#ffffff; cellspacing:0; cellpadding:0;" colspan="11" align="center">* COLORES *
+<!--		<marquee behavior="alternate"> <marquee height="30" scrollamount="3" direction="up" > * PUSH *</marquee> </marquee> //-->
 	<tr>
-		<td class="verde" onClick="Cuales('verde')" colspan="2" height="30">
-		<td class="purpura"  onClick="Cuales('purpura')" colspan="2">
-		<td class="plata"  onClick="Cuales('plata')" colspan="2">
-		<td class="rosa"  onClick="Cuales('rosa')" colspan="2">
-		<td class="anaranjado"  onClick="Cuales('anaranjado')" colspan="2">
-
-	</tr>
-	</table>
-
-<table bgcolor="teal" id="indicadores" style="border-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000" width="140" height="180" align="right">
-	<tr>
-		<td colspan="10" bgcolor="teal" align="center" valign="center" height="20">
-			<input type="button" name="historia" id="historia" class="" value="Historia" style="width:125px" onClick="Historia()" />
-			<input type="button" name="nuevo" id="nuevo" class="" value="Nuevo Juego" style="width:125px" onClick="Nuevo('noasignado')" />
-			<div id="jug" style="color:#ffffff; display: none"><strong>Jugador: </strong> </div><b>
-			<input type="button" name="jugador" id="jugador" class="" value="-----" style="width:125px" onClick="Ayuda(this)" /></b>
-			<input type="button" name="nivel" id="nivel" class="" value="Nivel" style="width:125px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="score" id="score" class="" value="Movimientos" style="width:125px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="ayuda" id="ayuda" class="" value="Ayuda" style="width:125px" onClick="Ayuda(this)" /><br>
-			<input type="button" name="salir" id="salir" class="" value="Salir" style="width:125px" onClick="javascript:window.close()" /><br>
-	</tr></table>
+		<td id="ponverde" onClick="Cuales('verde')" colspan="2" height="15">
+		<td id="ponpurpura" onClick="Cuales('purpura')" colspan="2">
+		<td id="ponplata" onClick="Cuales('plata')" colspan="2">
+		<td id="ponrosa" onClick="Cuales('rosa')" colspan="2">
+		<td id="ponanaranjado" onClick="Cuales('anaranjado')" colspan="2">
+</tr>
+</table>
 </center></div><p>
+
 <div id="inicio" align="center" style="width:300px; height:200px; background-color:brown; display: none">
 <table width="300" height="200"> <tr><td align="center" valign="center">
 <b>Haz click para iniciar</b><p>
@@ -515,7 +536,7 @@ function playSound() {
 </span><span style="color: #ffffff;">#</span><span style="color: #ffffff;">###################</span><span style="color: #fefefe;">##</span><span style="color: #ffffff;">#</span><span style="color: #fefefe;">#</span><span style="color: #fafafa;">#</span><span style="color: #f9f9f9;">#</span><span style="color: #f7f7f7;">#</span><span style="color: #f8f8f8;">#</span><span style="color: #fbfbfb;">#</span><span style="color: #fdfdfd;">#</span><span style="color: #ffffff;">########################
 </span></pre>
 <div><input type="button" id="nuevos" value="Nuevo juego" onClick="Nuevo(genero)" />
-     <input type="button" name="salir" id="salir" value="Me rindo" style="width: 105px" onClick="Cerrar()" /><br>
+     <!-- <input type="button" name="salir" id="salir" value="Me rindo" style="width: 105px" onClick="Cerrar()" /><br> //-->
 </div>
 </div>
 
