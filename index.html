@@ -26,7 +26,7 @@ td.rosa {background-color: #ff00ff}
 y crear un lista con el identificador de cada una de las celdas que este en la categoria de "conectadas".
 Con esa lista, se asignara un nuevo color general a cada miembro de ella.
 */
-var i=1; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0; nivel=0;
+var i=1; j=10; k=20; l=30; m=40; p=50; q=60; r=70; s=80; t=90; n=0; z=0; nivel=0; b=0; cuenta=0;
 tiros = 0; amo="";
 lista = [];
 conec = [];
@@ -37,29 +37,8 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 
 	function Mosaico() {
 		var elemento =  document.getElementsByTagName("td");
-		for ( a=1; a<101; a++ ) {
+		for ( a=1; a<=100; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
-/*		for ( a=1; a<11; a++ ) {
-			document.getElementsByTagName("td")[a].className="purpura";  }
-		for ( a=11; a<92; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=10; a<101; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=91; a<101; a++ ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=13; a<19; a++ ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=24; a<28; a++ ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=43; a<84; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=64; a<68; a++ ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=48; a<89; a += 10 ) {
-			document.getElementsByTagName("td")[a].className="purpura"; }
-		for ( a=1; a<7; a++ ) {
-			document.getElementsByTagName("td")[logoM[a]].className="purpura"; }
-*/
 		for ( a=44; a<48; a++ ) {
 			document.getElementsByTagName("td")[a].className="rosa"; }
 		for ( a=12; a<83; a += 10 ) {
@@ -77,6 +56,11 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 		elemento[77].className="anaranjado";
 		elemento[86].className="anaranjado";
 		elemento[95].className="anaranjado";
+		var par = lista[i] + " " + conec[i] + "<br>";
+		for ( b=0; b<=100; b++ ) {
+			lista[b] = b;
+			conec[b] = "no"; 
+		}
 		
 	}
 
@@ -154,7 +138,7 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 		}
 		} 
 		
-function Nuevo(eloella) {
+	function Nuevo(eloella) {
 
 		if ( document.getElementById('nuevo').value != "Nuevo Juego" ) { return false; }
 		document.bgColor="#3399cc";
@@ -180,7 +164,7 @@ function Nuevo(eloella) {
 	if (  eloella == "mujer" ) { amo = "Lady"; }
 	if (  eloella == "hombre" ) { amo = "Señor"; }
 		
-	tiros=24;
+	tiros=23;
 	i=1; n=0; ok=1; nivel=0; lista=[];
 	Revuelve(); 
 		document.getElementById('jugador').value = nombre;
@@ -188,14 +172,14 @@ function Nuevo(eloella) {
 		document.getElementById('jug').style.display= "block";
 		document.getElementById('nivel').value = "Nivel: " + nivel;
 		document.getElementById('score').value = "Movimientos: " + tiros;
-		if ( amo == "Señor" ) {	document.getElementById('jug').innerHTML = "Valiente"; }
+		if ( amo == "Señor" ) {	document.getElementById('jug').innerHTML = "Valeroso"; }
 		if ( amo == "Lady" ) {	document.getElementById('jug').innerHTML = "Hermosa"; }
 	}
 
 	function Revuelve() {
 		x=1;
 		var aleatorio;
-		for ( x=1; x<100; x++) {
+		for ( x=1; x<=100; x++) {
 		aleatorio = Math.floor((Math.random() * 5 + 1));
 			if ( aleatorio == 1 ) {
 				document.getElementsByTagName("td")[x].className = "plata"; }
@@ -214,13 +198,20 @@ function Nuevo(eloella) {
 	function Cuales(nuevoColor) {
 		playSound();
 		color_cambiar = document.getElementsByTagName("td")[1].className;
+		//document.getElementById('mensajes').innerHTML = "";
+
 		if (color_cambiar == nuevoColor ) { //alert("\tUsa otro color. \nEl color " +nuevoColor+ " es el que tienes que cambiar"); 
 			return 0; }
 		if ( tiros == 0 ) { //alert("Debes iniciar un juego nuevo"); 
 			return 0; }
-		if ( tiros > 0 ) { tiros = tiros - 1; }
-		ok=1;
+		if ( tiros > 0 ) { tiros = tiros - 1; 
+			if ( tiros == 12 ) { document.getElementById('mensajes').innerHTML = "Ya vas a medio camino";
+				setTimeout(function() {document.getElementById('mensajes').innerHTML = ""; }, 3000);
+		 }
+		}
+		ok=2;
 		document.getElementById('score').value = "Movimientos: " + tiros;
+		lista[0] = 0;
 		lista[1] = 1;
 		conec[0] = "no";
 		conec[1] = "ok";
@@ -231,7 +222,7 @@ function Nuevo(eloella) {
 				if ( i==1 ) {
 					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
-				if ( i>1  && i<10 ) {
+				if ( i>=2  && i<10 ) {
 					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
 						lista[i] = i; conec[i] = "ok"; 	ok++; } }
 				if ( i==10 ) {
@@ -282,7 +273,7 @@ function Nuevo(eloella) {
 		}
 
 
-		for ( n=0; n<101; n++ ) {
+		for ( n=0; n<=100; n++ ) {
 			if ( conec[n] == "ok" ) { document.getElementsByTagName("td")[n].className = nuevoColor; }
 		}
 
@@ -290,11 +281,11 @@ function Nuevo(eloella) {
 			alert("¡Ganaste!"); 
 			limpieza(); 
 			nivel++; 
-				if ( nivel == 1 ) { tiros = 23; }
-				if ( nivel == 2 ) { tiros = 22; } 
-				if ( nivel == 3 ) { tiros = 21; } 
-				if ( nivel == 4 ) { tiros = 20; }
-				if ( nivel == 5 ) { tiros = 19; }
+				if ( nivel == 1 ) { tiros = 22; }
+				if ( nivel == 2 ) { tiros = 21; } 
+				if ( nivel == 3 ) { tiros = 20; } 
+				if ( nivel == 4 ) { tiros = 19; }
+				if ( nivel == 5 ) { tiros = 18; }
 
 			NuevoNivel(nivel, tiros);
 			return 0; }
@@ -305,35 +296,95 @@ function Nuevo(eloella) {
 
 				if ( esta >= 0 ) { alert("\t\t¡Loooooooooooser!"); 
 					if ( nivel == 0) { alert("Creo que mejor deberias buscar algun reto de 'tu nivel'"); }
-					if ( nivel == 1) { alert("¡Lo sabia! \nHay muchos retadores como tu, pululando por ahi. \nTrata cuando quieras."); }
+					if ( nivel == 1) { alert("¡Lo sabia! \nHay muchos 'no ganadores' \ncomo tu, pululando por ahi. \nTrata cuanto quieras."); }
 					if ( nivel == 2) { alert("Parecias ser mejor que el promedio, que decepcion..."); }
 					if ( nivel == 3) { alert("¡Buen intento! \nNo cualquiera alcanza estos niveles."); }
 					if ( nivel == 4) { alert("¡Vaya, por un momento pense que la profecia... \n¡Bah! Solo son historias."); }
-					if ( nivel == 5) { alert("¡A los impostores, los castigamos con la muerte!"); 
-							alert("Pero no te preocupes, hoy te ganaste mi respeto al llegar hasta aqui. \nSigue tu camino."); }
+					if ( nivel == 5) { alert("Parecias tener 'ese' extra..."); 
+							alert("Pero no te iras sin nada \nhoy, te ganaste mi respeto \nal llegar hasta aqui."); }
 					document.getElementById('caja').style.display = "none";
 					document.getElementById('nuevo').value = "Nuevo Juego";
 					document.getElementById('imagen').style.display = "block";
 					document.bgColor="#ffffff";
 				}
 		}
-		limpieza();
+	//	document.getElementById('ver_lista').innerHTML = lista + "\n" + conec;
+		Cuales(nuevoColor); limpieza(); Comprueba();
 	}
 
 	function limpieza() {
-		i=1; n=0; ok=0; lista=[]; conec=[]; 
+		i=1; n=0; ok=2; lista=[]; conec=[]; cuenta=0;
 	}
 
 	function limpiezaTotal() {
-		i=1; n=0; ok=0; lista=[]; conec=[]; tiros=0;
+		i=1; n=0; ok=2; lista=[]; conec=[]; tiros=0; cuenta=0;
 	}
 
 	function Comprueba(){
-			for ( z=0; z<100; z++ ) {
-				if ( document.getElementsByTagName("td")[z].className == color_cambiar ) { cuenta++; 
-				if ( cuenta == 100 ) { 
-					alert("¡Victoriaaaaaaaa!"); }
-		}	}	}
+		for ( i=1; i<=100; i++) {
+			if ( document.getElementsByTagName("td")[i].className == color_cambiar ) {
+				if ( i==1 ) {
+					if ( conec[i+1] == "ok" || conec[i+10] == "ok") {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>1  && i<10 ) {
+					if ( conec[i-1] == "ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==10 ) {
+					if ( conec[i-1] =="ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>11  && i<20 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>21  && i<30 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>31  && i<40 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>41  && i<50 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>51  && i<60 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>61  && i<70 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>71  && i<80 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>81  && i<90 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==91) {
+					if ( conec[i-10] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i>91  && i<100 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" || conec[i+1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; } }
+				if ( i==11 || i==21 || i==31 || i==41 || i==51 || i==61 || i==71 || i==81 ) {
+					if ( conec[i-10] =="ok" || conec[i+1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+				if ( i==20 || i==30 || i==40 || i==50 || i==60 || i==70 || i==80 || i==90 ) {
+					if ( conec[i-10] =="ok" || conec[i-1] == "ok" || conec[i+10] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; ok++; } }
+				if ( i==100 ) {
+					if ( conec[i-10] == "ok" || conec[i-1] == "ok" ) {
+						lista[i] = i; conec[i] = "ok"; 	ok++; }
+				//document.getElementById('ver_lista').innerHTML += lista[b] + " " + conec[b] + "<br>";
+				}
+			if ( document.getElementsByTagName("td")[i].className != color_cambiar ) { lista[i] = i; conec[i] = "no";
+				//document.getElementById('ver_lista').innerHTML += lista[b] + " " + conec[b] + "<br>";
+			}
+
+			
+/*		for ( z=1; z<101; z++ ) {
+			if ( document.getElementsByTagName("td")[z].className == color_cambiar ) { cuenta++; 
+			if ( cuenta == 100 ) { 
+				alert("¡Victoriaaaaaaaa!"); }
+		}	*/}		
+		}
+		}
 	
 
 function Ayuda(ayu){
@@ -358,7 +409,7 @@ function Ayuda(ayu){
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
 					document.getElementById('score').value = "Movimientos: " + n_tiros;
 		}
-		if ( n_nivel == "2" ) { alert("Asuuuuustame panteon. \nOk. Digamos, que te tomare en serio...");
+		if ( n_nivel == "2" ) { alert("A poco si? \nOk, que te tomare en serio...");
 					Revuelve();
 				 	document.getElementById('nivel').value = "Nivel: " + n_nivel;
 					document.getElementById('score').value = "Movimientos: " + n_tiros;
@@ -395,13 +446,13 @@ function Ayuda(ayu){
 
 
 function playSound() {
-	var soundfile = "res/raw/pap.mp3";
-	var soundfile2 = "res/raw/pap.wav";
-	var soundfile3 = "res/raw/pap.ogg";
+	var soundfile = "res/pap.mp3";
+	//var soundfile2 = "res/pap.wav";
+	//var soundfile3 = "res/pap.ogg";
 
   document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
-  document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile2+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
-  document.getElementById("pap").innerHTML= "<embed src=\"" +soundfile3+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+//  document.getElementById("pap1").innerHTML= "<embed src=\"" +soundfile2+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+//  document.getElementById("pap2").innerHTML= "<embed src=\"" +soundfile3+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
 }
 
 	function Cerrar() {
@@ -411,8 +462,8 @@ function playSound() {
 //--></script>
 </head>
 <body bgcolor="#3399cc" align="center" onload="Mosaico()"><center>
-<div id="caja" style="width:270; height: 190; background-color:brown; display: block" ><center>
-<table bgcolor="#000000" width="270" height="190" autostart="true" align="left">
+<div id="caja" style="width:300; height: 200; background-color:brown; display: block" ><center>
+<table bgcolor="#000000" width="300" height="200" autostart="true" align="left">
 
 	<tr>
 		<td bgcolor="teal" rowspan="12" align="center" valign="center" width="125" height="20">
@@ -540,7 +591,9 @@ function playSound() {
 </div>
 </div>
 
-<span id="pap">  </span>
-
+<div id="pap">  </div>
+<div id="pap1">  </div>
+<div id="pap2">  </div>
+<div id="mensajes" style="color: red"> <b><i> </i></b> </div>
 </center></body>
 </html>        
