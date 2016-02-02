@@ -35,7 +35,11 @@ nombre = "";
 var logoR = ['23', '28', '33', '34', '37', '38', '55', '56'];
 var logoM = ['34', '35', '53', '56', '73', '86'];
 
+function abrirDialogoModal() {
+showModalDialog('index1.html','','dialogWidth:505px; dialogHeight:325px;status:no;resizable:yes;directionbar=no;toolbars=no');
+}
 	function Mosaico() {
+		//abrirDialogoModal();
 		var elemento =  document.getElementsByTagName("td");
 		for ( a=1; a<=100; a++ ) {
 			document.getElementsByTagName("td")[a].className="purpura"; }
@@ -205,7 +209,7 @@ var logoM = ['34', '35', '53', '56', '73', '86'];
 		if ( tiros == 0 ) { //alert("Debes iniciar un juego nuevo"); 
 			return 0; }
 		if ( tiros > 0 ) { tiros = tiros - 1; 
-			if ( tiros == 12 ) { document.getElementById('mensajes').innerHTML = "Ya vas a medio camino";
+			if ( tiros == 10 ) { document.getElementById('mensajes').innerHTML = "Lero, lero, te quedan 10 movimientos.";
 				setTimeout(function() {document.getElementById('mensajes').innerHTML = ""; }, 3000);
 		 }
 		}
@@ -443,8 +447,6 @@ function Ayuda(ayu){
 		}		
 
 	}
-
-
 function playSound() {
 	var soundfile = "res/pap.mp3";
 	//var soundfile2 = "res/pap.wav";
@@ -594,6 +596,6 @@ function playSound() {
 <div id="pap">  </div>
 <div id="pap1">  </div>
 <div id="pap2">  </div>
-<div id="mensajes" style="color: red"> <b><i> </i></b> </div>
+<div id="mensajes" style="color: lime"> <i><strong> </strong></i> </div>
 </center></body>
 </html>        
